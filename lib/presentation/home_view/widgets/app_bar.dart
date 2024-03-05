@@ -1,7 +1,7 @@
 part of '../home_view.dart';
 
-final class HomeAppBarWidget extends StatelessWidget {
-  const HomeAppBarWidget({super.key});
+final class _HomeAppBarWidget extends StatelessWidget {
+  const _HomeAppBarWidget();
 
   @override
   SliverAppBar build(BuildContext context) {

@@ -4,7 +4,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:my_coding_setup/core/services/logger/logger_service.dart';
 import 'package:my_coding_setup/injection/injection_container.dart';
-import 'package:my_coding_setup/presentation/home_page/home_view.dart';
+import 'package:my_coding_setup/presentation/home_view/home_view.dart';
 import 'package:my_coding_setup/shared/app_theme.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 

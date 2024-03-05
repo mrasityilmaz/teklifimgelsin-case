@@ -1,12 +1,11 @@
 part of '../home_view.dart';
 
-final class HomeSearchTitleWidget extends StatelessWidget {
-  const HomeSearchTitleWidget({
+final class _HomeSearchTitleWidget extends StatelessWidget {
+  const _HomeSearchTitleWidget({
     required this.mount,
     required this.amountByK,
     required this.loanType,
     required this.count,
-    super.key,
   });
   final int mount;
   final double amountByK;

@@ -85,6 +85,7 @@ flutter:
   assets:
     - assets/
     - assets/logo/
+    - assets/bank_logos/
     - assets/fonts/
     - test/fixtures/
   # An image asset can refer to one or more resolution-specific "variants", see
