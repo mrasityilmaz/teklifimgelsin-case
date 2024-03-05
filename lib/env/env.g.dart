@@ -8,14 +8,14 @@ part of 'env.dart';
 
 class _Env {
   static const List<int> _enviedkeyapiKey = [
-    3761110095,
-    2207606076,
-    1093808185
+    3320434728,
+    1953438005,
+    2566527485
   ];
   static const List<int> _envieddataapiKey = [
-    3761110052,
-    2207606105,
-    1093808192
+    3320434755,
+    1953438032,
+    2566527364
   ];
   static final String apiKey = String.fromCharCodes(
     List.generate(_envieddataapiKey.length, (i) => i, growable: false)

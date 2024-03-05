@@ -1,6 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
+import 'package:my_coding_setup/shared/theme/color_scheme.dart';
 
 extension ContextExtension on BuildContext {
   MediaQueryData get mediaQuery => MediaQuery.of(this);
@@ -16,10 +17,17 @@ extension MediaQueryExtension on BuildContext {
   double get highValue => height * 0.1;
 }
 
-extension ThemeExtension on BuildContext {
-  ThemeData get theme => Theme.of(this);
-  TextTheme get textTheme => theme.textTheme;
-  ColorScheme get colors => theme.colorScheme;
+extension ThemeExtensionn on BuildContext {
+  ThemeData get theme => Theme.of(this).copyWith(extensions: Theme.of(this).extensions.values);
+
+  TextTheme get textTheme => Theme.of(this).textTheme;
+
+  ColorScheme get colors => Theme.of(this).colorScheme;
+  AppColorScheme get appColors => AppColorScheme.instance;
+}
+
+extension Themmeee on ThemeData {
+  Iterable<ThemeExtension<dynamic>> get extensions => <ThemeExtension<dynamic>>[];
 }
 
 extension PaddingExtensionAll on BuildContext {
@@ -39,6 +47,16 @@ extension PaddingExtensionSymetric on BuildContext {
   EdgeInsets get paddingNormalHorizontal => EdgeInsets.symmetric(horizontal: normalValue);
   EdgeInsets get paddingMediumHorizontal => EdgeInsets.symmetric(horizontal: mediumValue);
   EdgeInsets get paddingHighHorizontal => EdgeInsets.symmetric(horizontal: highValue);
+
+  EdgeInsets get screenPaddingTop => const EdgeInsets.only(top: 12);
+  EdgeInsets get screenPaddingBottom => const EdgeInsets.only(bottom: 12);
+  EdgeInsets get adaptiveScreenPaddingBottom => mediaQuery.viewPadding.bottom > 0 ? (screenPaddingBottom * .5) + paddingLowBottom : screenPaddingBottom + paddingLowBottom;
+  EdgeInsets get screenPadding => screenPaddingHorizontal + screenPaddingVertical;
+  EdgeInsets get screenPaddingHorizontal => screenPaddingLeft + screenPaddingRight;
+  EdgeInsets get screenPaddingRight => const EdgeInsets.only(right: 16);
+  EdgeInsets get screenPaddingLeft => const EdgeInsets.only(left: 16);
+
+  EdgeInsets get screenPaddingVertical => const EdgeInsets.symmetric(vertical: 12);
 }
 
 extension PaddingExtensionSides on BuildContext {
@@ -68,6 +86,18 @@ extension PageExtension on BuildContext {
 }
 
 extension DurationExtension on BuildContext {
+  Duration get duration150 => const Duration(milliseconds: 150);
+  Duration get duration200 => const Duration(milliseconds: 200);
+  Duration get duration250 => const Duration(milliseconds: 250);
+  Duration get duration300 => const Duration(milliseconds: 300);
   Duration get lowDuration => const Duration(milliseconds: 500);
   Duration get normalDuration => const Duration(seconds: 1);
+}
+
+extension RadiusExtension on BuildContext {
+  BorderRadiusGeometry get radius4 => BorderRadius.circular(4);
+  BorderRadiusGeometry get radius8 => BorderRadius.circular(8);
+  BorderRadiusGeometry get radius12 => BorderRadius.circular(12);
+  BorderRadiusGeometry get radius16 => BorderRadius.circular(16);
+  BorderRadiusGeometry get radius20 => BorderRadius.circular(20);
 }
