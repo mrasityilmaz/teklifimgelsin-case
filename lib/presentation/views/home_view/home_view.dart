@@ -8,11 +8,14 @@ import 'package:my_coding_setup/presentation/core_widgets/ad_banner_widget/ad_ba
 import 'package:my_coding_setup/presentation/core_widgets/advanced_button/advanced_button_widget.dart';
 import 'package:my_coding_setup/presentation/core_widgets/date_now_widget/date_now_widget.dart';
 import 'package:my_coding_setup/presentation/core_widgets/offer_card_component/offer_card_component.dart';
-import 'package:my_coding_setup/presentation/home_view/home_viewmodel.dart';
+import 'package:my_coding_setup/presentation/views/home_view/home_viewmodel.dart';
 import 'package:stacked/stacked.dart';
 
+part 'widgets/active_offers_section.dart';
 part 'widgets/app_bar.dart';
+part 'widgets/passive_offers_section.dart';
 part 'widgets/search_title.dart';
+part 'widgets/sponsored_offers_section.dart';
 part 'widgets/title_buttons_section.dart';
 
 final class HomeView extends StatelessWidget {
@@ -45,17 +48,15 @@ final class HomeView extends StatelessWidget {
                 SizedBox(
                   height: context.normalValue,
                 ).wrapInSliverToBoxAdapter,
-                if (viewModel.offersResponse != null && viewModel.offersResponse?.sponsoredOffers?.isNotEmpty == true) ...[
-                  SliverList.builder(
-                    itemCount: viewModel.offersResponse?.sponsoredOffers?.length ?? 0,
-                    itemBuilder: (context, index) {
-                      final offer = viewModel.offersResponse?.sponsoredOffers?[index];
-                      return OfferCardWidget(
-                        sponsoredOfferModel: offer,
-                      );
-                    },
-                  ),
-                ],
+                const _SponsoredOffersSection(),
+                AdBannerWidget(
+                  imageUrl: 'https://cdn.teklifimgelsin.com/images/banners/QNB_30k_720x250.webp',
+                  borderRadius: BorderRadius.circular(12),
+                  padding: context.screenPaddingHorizontal + context.paddingNormalBottom,
+                  border: Border.all(color: context.appColors.primaryGreyBorderColor, width: 1.5),
+                ).wrapInSliverToBoxAdapter,
+                const _ActiveOffersSection(),
+                const _PassiveOffersSection(),
                 SliverSafeArea(
                   minimum: context.adaptiveScreenPaddingBottom + context.paddingMediumBottom,
                   sliver: const SliverToBoxAdapter(

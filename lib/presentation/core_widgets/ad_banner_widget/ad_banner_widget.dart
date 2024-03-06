@@ -3,25 +3,36 @@ import 'package:flutter/material.dart';
 
 @immutable
 final class AdBannerWidget extends StatelessWidget {
-  const AdBannerWidget({required this.imageUrl, super.key, this.redirectUrl, this.height, this.shape});
+  const AdBannerWidget({required this.imageUrl, super.key, this.redirectUrl, this.height, this.borderRadius = BorderRadius.zero, this.padding = EdgeInsets.zero, this.border = const Border()});
   final String imageUrl;
   final String? redirectUrl;
   final double? height;
 
-  final Decoration? shape;
+  final BorderRadiusGeometry borderRadius;
+  final EdgeInsetsGeometry padding;
+  final BoxBorder border;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        if (redirectUrl != null) {
-          // OpenUrlService().openUrl(redirectUrl!);
-        }
-      },
-      child: Container(
-        height: height,
-        decoration: shape,
-        child: CachedNetworkImage(imageUrl: imageUrl),
+    return Container(
+      margin: padding,
+      decoration: BoxDecoration(
+        borderRadius: borderRadius,
+        border: border,
+      ),
+      child: GestureDetector(
+        onTap: () {
+          if (redirectUrl != null) {
+            // OpenUrlService().openUrl(redirectUrl!);
+          }
+        },
+        child: ClipRRect(
+          borderRadius: borderRadius * .85,
+          child: SizedBox(
+            height: height,
+            child: CachedNetworkImage(imageUrl: imageUrl),
+          ),
+        ),
       ),
     );
   }

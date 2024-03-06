@@ -29,6 +29,7 @@ linter:
     public_member_api_docs: false
     lines_longer_than_80_chars: false
     one_member_abstracts : false
+    omit_local_variable_types: false
    
     
     # avoid_print: false  # Uncomment to disable the `avoid_print` rule

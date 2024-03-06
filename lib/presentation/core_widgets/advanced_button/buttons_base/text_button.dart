@@ -33,7 +33,7 @@ final class _TextButton extends StatelessWidget {
         backgroundColor: backgroundColor ?? context.colors.primary,
         minimumSize: expand ? const Size(double.infinity, kMinInteractiveDimension) : null,
         fixedSize: expand ? const Size(double.infinity, kMinInteractiveDimension) : null,
-        shape: shape ?? RoundedRectangleBorder(borderRadius: context.radius8),
+        shape: shape ?? RoundedRectangleBorder(borderRadius: context.radius12),
         padding: padding,
         elevation: 0,
         splashFactory: InkSparkle.constantTurbulenceSeedSplashFactory,

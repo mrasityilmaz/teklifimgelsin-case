@@ -30,7 +30,7 @@ final class _WidgetButton extends StatelessWidget {
           : null,
       style: TextButton.styleFrom(
         backgroundColor: backgroundColor ?? context.colors.primary,
-        shape: shape ?? RoundedRectangleBorder(borderRadius: context.radius8),
+        shape: shape ?? RoundedRectangleBorder(borderRadius: context.radius12),
         minimumSize: expand ? const Size(double.infinity, kMinInteractiveDimension) : null,
         fixedSize: expand ? const Size(double.infinity, kMinInteractiveDimension) : null,
         padding: padding,

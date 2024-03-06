@@ -24,6 +24,7 @@ final class HomeViewModel extends BaseViewModel {
       await runBusyFuture(_offerRepository.getLoanOffersByType(loanType: LoanTypeEnum.personalFinanceLoan)).then(
         (value) => value.fold((l) => debugPrint(l.toString()), (r) {
           _offersResponse = r;
+
           notifyListeners();
         }),
       );
