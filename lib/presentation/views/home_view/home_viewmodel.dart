@@ -1,4 +1,4 @@
-import 'package:flutter/foundation.dart';
+import 'package:flutter/material.dart';
 import 'package:my_coding_setup/core/services/logger/logger_service.dart';
 import 'package:my_coding_setup/data/enums/credit_type_enum.dart';
 import 'package:my_coding_setup/data/models/offer_response_model/offers_response_model.dart';
@@ -32,4 +32,9 @@ final class HomeViewModel extends BaseViewModel {
       LoggerService.instance.catchLog(e, s);
     }
   }
+
+  ///
+  ///
+  ///  Global Keys
+  ///
 }

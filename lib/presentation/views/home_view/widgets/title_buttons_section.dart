@@ -25,7 +25,16 @@ final class _HomeTitleButtonSection extends StatelessWidget {
                 color: context.appColors.primaryBlueColor,
                 fontWeight: FontWeight.w800,
               ),
-              onPressed: () {},
+              onPressed: () async {
+                await AppDialogs.instance.showModalBottomSheetDialog<void>(
+                  context,
+                  showDragHandle: true,
+                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+                  useSafeArea: true,
+                  constraints: const BoxConstraints(),
+                  child: const SearchParamsView(),
+                );
+              },
               backgroundColor: context.appColors.primaryGreyBackgroundColor,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8), side: BorderSide(color: context.appColors.primaryGreyBorderColor)),
             ),

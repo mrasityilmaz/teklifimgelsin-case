@@ -23,65 +23,72 @@ part 'widgets/expanded_detail_section.dart';
 
 @immutable
 final class OfferCardWidget extends StatelessWidget {
-  const OfferCardWidget({required this.expiry, required this.amount, super.key, this.sponsoredOfferModel, this.offerModel, this.isExpanded = false});
+  const OfferCardWidget({required this.expiry, required this.amount, super.key, this.sponsoredOfferModel, this.offerModel, this.isExpanded = false, this.isDisabled = false});
   final SponsoredOfferModel? sponsoredOfferModel;
   final OfferModel? offerModel;
   final int expiry;
   final double amount;
 
   final bool isExpanded;
+  final bool isDisabled;
 
   @override
   Widget build(BuildContext context) {
-    return Hero(
-      transitionOnUserGestures: true,
-      tag: sponsoredOfferModel?.adUtmLink ?? offerModel?.bankId ?? '',
-      child: Material(
-        type: MaterialType.transparency,
-        child: AnimatedContainer(
-          duration: const Duration(milliseconds: 300),
-          constraints: isExpanded
-              ? BoxConstraints(
-                  maxHeight: context.height * .65,
-                )
-              : null,
-          margin: context.screenPaddingHorizontal + context.paddingNormalBottom + _ifBadgeTextExist(context),
-          padding: EdgeInsets.zero,
-          child: InkWell(
-            borderRadius: BorderRadius.circular(14),
-            onTap: isExpanded ? null : () => onTap(context),
-            splashFactory: InkSplash.splashFactory,
-            child: Ink(
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(isExpanded ? 20 : 16),
-                border: Border.all(
-                  color: context.appColors.primaryGreyBorderColor,
-                  width: 1.5,
-                ),
-                color: context.appColors.primaryWhiteBackgroundColor,
-              ),
-              child: Stack(
-                clipBehavior: Clip.none,
-                alignment: Alignment.center,
-                children: [
-                  _OfferCardConstantBody(
-                    sponsoredOfferModel: sponsoredOfferModel,
-                    offerModel: offerModel,
-                    isExpanded: isExpanded,
-                    expiry: expiry,
-                    amount: amount,
-                  ),
-
-                  ///
-                  /// Badge Text its only visible if badgeText is not empty
-                  ///
-                  if (_hasBadgeText) ...[
-                    Positioned(
-                      top: -kMinInteractiveDimension * .65 * .5,
-                      child: _BadgeTextWidget(text: _badgeText, isSponsored: sponsoredOfferModel != null),
+    return IgnorePointer(
+      ignoring: isDisabled,
+      child: Opacity(
+        opacity: isDisabled ? .25 : 1,
+        child: Hero(
+          transitionOnUserGestures: true,
+          tag: sponsoredOfferModel?.adUtmLink ?? offerModel?.bankId ?? '',
+          child: Material(
+            type: MaterialType.transparency,
+            child: AnimatedContainer(
+              duration: const Duration(milliseconds: 300),
+              constraints: isExpanded
+                  ? BoxConstraints(
+                      maxHeight: context.height * .65,
+                    )
+                  : null,
+              margin: context.screenPaddingHorizontal + context.paddingNormalBottom + _ifBadgeTextExist(context),
+              padding: EdgeInsets.zero,
+              child: InkWell(
+                borderRadius: BorderRadius.circular(14),
+                onTap: isExpanded ? null : () => onTap(context),
+                splashFactory: InkSplash.splashFactory,
+                child: Ink(
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(isExpanded ? 20 : 16),
+                    border: Border.all(
+                      color: context.appColors.primaryGreyBorderColor,
+                      width: 1.5,
                     ),
-                  ],
-                ],
+                    color: context.appColors.primaryWhiteBackgroundColor,
+                  ),
+                  child: Stack(
+                    clipBehavior: Clip.none,
+                    alignment: Alignment.center,
+                    children: [
+                      _OfferCardConstantBody(
+                        sponsoredOfferModel: sponsoredOfferModel,
+                        offerModel: offerModel,
+                        isExpanded: isExpanded,
+                        expiry: expiry,
+                        amount: amount,
+                      ),
+
+                      ///
+                      /// Badge Text its only visible if badgeText is not empty
+                      ///
+                      if (_hasBadgeText) ...[
+                        Positioned(
+                          top: -kMinInteractiveDimension * .65 * .5,
+                          child: _BadgeTextWidget(text: _badgeText, isSponsored: sponsoredOfferModel != null),
+                        ),
+                      ],
+                    ],
+                  ),
+                ),
               ),
             ),
           ),

@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
@@ -10,7 +8,9 @@ import 'package:my_coding_setup/presentation/core_widgets/ad_banner_widget/ad_ba
 import 'package:my_coding_setup/presentation/core_widgets/advanced_button/advanced_button_widget.dart';
 import 'package:my_coding_setup/presentation/core_widgets/date_now_widget/date_now_widget.dart';
 import 'package:my_coding_setup/presentation/core_widgets/offer_card_component/offer_card_component.dart';
+import 'package:my_coding_setup/presentation/dialogs/app_dialogs.dart';
 import 'package:my_coding_setup/presentation/views/home_view/home_viewmodel.dart';
+import 'package:my_coding_setup/presentation/views/search_params_view/search_params_view.dart';
 import 'package:stacked/stacked.dart';
 
 part 'widgets/active_offers_section.dart';
@@ -35,6 +35,7 @@ final class HomeView extends StatelessWidget {
           body: SafeArea(
             bottom: false,
             child: CustomScrollView(
+              shrinkWrap: true,
               slivers: [
                 const _HomeAppBarWidget(),
                 const AdBannerWidget(

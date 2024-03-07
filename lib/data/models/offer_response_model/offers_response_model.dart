@@ -1,7 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:my_coding_setup/core/parsers/datetime_parser.dart';
+import 'package:my_coding_setup/core/parsers__and_formatters/datetime_parser.dart';
 import 'package:my_coding_setup/data/models/offer_model/offer_model.dart';
 import 'package:my_coding_setup/data/models/sponsored_offer_model/sponsored_offer_model.dart';
 

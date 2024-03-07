@@ -24,16 +24,6 @@ final class _HomeAppBarWidget extends StatelessWidget {
           ),
         ),
       ),
-      actions: [
-        MenuItemButton(
-          style: MenuItemButton.styleFrom(),
-          child: Icon(
-            Icons.menu,
-            color: context.appColors.primaryBlueColor,
-            size: 26,
-          ),
-        ),
-      ],
     );
   }
 }
