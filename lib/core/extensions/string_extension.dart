@@ -1,28 +1,33 @@
+import 'package:flutter/material.dart';
+
 extension StringExtension on String? {
-  List<String>? get decodeToHtmlTag {
+  List<TextSpan>? get decodeToTextSpans {
     if (this == null || this?.isEmpty == true) {
       return null;
     }
-    final List<String> paragraphs = this!.split('\n');
+    final List<TextSpan> paragraphs = this!
+        .split('\n')
+        .map(
+          (e) => TextSpan(
+            text: '$e\n'.replaceAll('**', '').replaceAll('*', '').replaceAll('-', '•').replaceAll('## ', ''),
+            style: TextStyle(
+              fontWeight: e.contains('**') || e.contains('##') ? FontWeight.w700 : FontWeight.w400,
+              fontStyle: e.contains('*') && !e.contains('**') ? FontStyle.italic : FontStyle.normal,
+            ),
+          ),
+        )
+        .toList();
 
-    for (int i = 0; i < paragraphs.length; i++) {
-      // Kalın yazılan ifadeleri bold olarak biçimlendirme
-      paragraphs[i] = paragraphs[i].replaceAllMapped(
-        RegExp('<b>(.*?)</b>'),
-        (match) => '<b>${match.group(1)}</b>',
-      );
-
-      // İtalik yazılan ifadeleri italik olarak biçimlendirme
-      paragraphs[i] = paragraphs[i].replaceAllMapped(
-        RegExp('<i>(.*?)</i>'),
-        (match) => '<i>${match.group(1)}</i>',
-      );
-
-      // Madde işaretlerini düzenleme
-      if (paragraphs[i].startsWith('- ')) {
-        paragraphs[i] = paragraphs[i].replaceFirst('- ', '• ');
-      }
-    }
     return paragraphs;
+  }
+}
+
+extension CurrencySymbolExtension on String {
+  String get withTLSymbol {
+    return '₺$this';
+  }
+
+  String get withPercentSymbol {
+    return '%$this';
   }
 }

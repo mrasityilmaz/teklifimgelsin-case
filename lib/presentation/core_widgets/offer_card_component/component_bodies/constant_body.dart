@@ -3,6 +3,8 @@ part of '../offer_card_component.dart';
 @immutable
 final class _OfferCardConstantBody extends StatelessWidget {
   const _OfferCardConstantBody({
+    required this.expiry,
+    required this.amount,
     this.offerModel,
     this.sponsoredOfferModel,
     this.isExpanded = false,
@@ -10,6 +12,8 @@ final class _OfferCardConstantBody extends StatelessWidget {
 
   final OfferModel? offerModel;
   final SponsoredOfferModel? sponsoredOfferModel;
+  final int expiry;
+  final double amount;
   final bool isExpanded;
 
   @override
@@ -21,63 +25,20 @@ final class _OfferCardConstantBody extends StatelessWidget {
         children: [
           if (isExpanded) ...[
             Flexible(
-              child: ListView(
-                padding: EdgeInsets.zero,
-                shrinkWrap: true,
-                children: [
-                  ///
-                  /// Bank Detail - Bank Logo, Ad, Share
-                  ///
-                  _BankLogoAndDetailSection(
-                    bankId: _bankId,
-                    isSponsored: sponsoredOfferModel != null,
-                  ),
-
-                  ///
-                  /// Center Detail - Title, Amount, Term, Interest
-                  ///
-                  _LoanDetailRowSection(
-                    offerModel: offerModel,
-                    sponsoredOfferModel: sponsoredOfferModel,
-                  ),
-
-                  Padding(
-                    padding: context.paddingNormal,
-                    child: Text.rich(
-                      TextSpan(
-                        children: _detailText
-                            ?.map(
-                              (e) => TextSpan(
-                                text: '$e\n'.replaceAll('**', '').replaceAll('*', '').replaceAll('-', ''),
-                                style: context.textTheme.titleSmall?.copyWith(
-                                  fontWeight: e.contains('**') ? FontWeight.w700 : FontWeight.w400,
-                                  fontStyle: e.contains('*') && !e.contains('**') ? FontStyle.italic : FontStyle.normal,
-                                  color: context.appColors.primaryBlackTextColor,
-                                ),
-                              ),
-                            )
-                            .toList(),
-                      ),
-                    ),
-                  ),
-                ],
+              child: _OfferCardExpandedBody(
+                offerModel: offerModel,
+                sponsoredOfferModel: sponsoredOfferModel,
+                isExpanded: isExpanded,
+                expiry: expiry,
+                amount: amount,
               ),
             ),
           ] else ...[
-            ///
-            /// Bank Detail - Bank Logo, Ad, Share
-            ///
-            _BankLogoAndDetailSection(
-              bankId: _bankId,
-              isSponsored: sponsoredOfferModel != null,
-            ),
-
-            ///
-            /// Center Detail - Title, Amount, Term, Interest
-            ///
-            _LoanDetailRowSection(
+            _OfferCardCollapsedBody(
               offerModel: offerModel,
               sponsoredOfferModel: sponsoredOfferModel,
+              expiry: expiry,
+              amount: amount,
             ),
           ],
 
@@ -92,9 +53,5 @@ final class _OfferCardConstantBody extends StatelessWidget {
     );
   }
 
-  int? get _bankId => sponsoredOfferModel?.bankId ?? offerModel?.bankId;
-
   bool get isSponsored => sponsoredOfferModel != null;
-
-  List<String>? get _detailText => isSponsored ? '${sponsoredOfferModel?.adHeader ?? ''}\n${sponsoredOfferModel?.adDetails ?? ''}'.decodeToHtmlTag : offerModel?.detailNote?.decodeToHtmlTag;
 }

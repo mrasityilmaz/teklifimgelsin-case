@@ -2,24 +2,32 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:my_coding_setup/core/extensions/context_extension.dart';
+import 'package:my_coding_setup/core/extensions/num_extension.dart';
 import 'package:my_coding_setup/core/extensions/string_extension.dart';
 import 'package:my_coding_setup/data/models/offer_loan_detail_model/offer_loan_detail_model.dart';
+import 'package:my_coding_setup/data/models/offer_loan_detail_model/sponsored_offer_loan_detail_model.dart';
 import 'package:my_coding_setup/data/models/offer_model/offer_model.dart';
 import 'package:my_coding_setup/data/models/sponsored_offer_model/sponsored_offer_model.dart';
 import 'package:my_coding_setup/presentation/core_widgets/advanced_button/advanced_button_widget.dart';
 
+part 'component_bodies/collapse_body.dart';
 part 'component_bodies/constant_body.dart';
+part 'component_bodies/expand_body.dart';
 part 'widgets/badge_text_widget.dart';
 part 'widgets/bank_logo_and_detail_section.dart';
 part 'widgets/bottom_button_section.dart';
-part 'widgets/center_detail_widget.dart';
+part 'widgets/details_row/detail_base_widget.dart';
+part 'widgets/details_row/detail_widget.dart';
+part 'widgets/details_row/sponsored_detail_widget.dart';
+part 'widgets/expanded_detail_section.dart';
 
 @immutable
 final class OfferCardWidget extends StatelessWidget {
-  const OfferCardWidget({super.key, this.sponsoredOfferModel, this.offerModel, this.onTap, this.isExpanded = false});
+  const OfferCardWidget({required this.expiry, required this.amount, super.key, this.sponsoredOfferModel, this.offerModel, this.isExpanded = false});
   final SponsoredOfferModel? sponsoredOfferModel;
   final OfferModel? offerModel;
-  final VoidCallback? onTap;
+  final int expiry;
+  final double amount;
 
   final bool isExpanded;
 
@@ -34,14 +42,14 @@ final class OfferCardWidget extends StatelessWidget {
           duration: const Duration(milliseconds: 300),
           constraints: isExpanded
               ? BoxConstraints(
-                  maxHeight: context.height * .55,
+                  maxHeight: context.height * .65,
                 )
               : null,
           margin: context.screenPaddingHorizontal + context.paddingNormalBottom + _ifBadgeTextExist(context),
           padding: EdgeInsets.zero,
           child: InkWell(
             borderRadius: BorderRadius.circular(14),
-            onTap: onTap,
+            onTap: isExpanded ? null : () => onTap(context),
             splashFactory: InkSplash.splashFactory,
             child: Ink(
               decoration: BoxDecoration(
@@ -60,6 +68,8 @@ final class OfferCardWidget extends StatelessWidget {
                     sponsoredOfferModel: sponsoredOfferModel,
                     offerModel: offerModel,
                     isExpanded: isExpanded,
+                    expiry: expiry,
+                    amount: amount,
                   ),
 
                   ///
@@ -88,4 +98,39 @@ final class OfferCardWidget extends StatelessWidget {
   bool get _hasBadgeText => (sponsoredOfferModel?.badgeText?.isNotEmpty == true) || (offerModel?.note?.isNotEmpty == true);
 
   String get _badgeText => _hasBadgeText ? sponsoredOfferModel?.badgeText ?? offerModel?.note ?? '' : '';
+
+  Future<void> onTap(BuildContext context) async {
+    await Navigator.of(context).push(
+      PageRouteBuilder<Widget>(
+        opaque: false,
+        barrierColor: Colors.black.withOpacity(.4),
+        barrierDismissible: true,
+        transitionDuration: const Duration(milliseconds: 250),
+        pageBuilder: (context, animation, secondaryAnimation) => SlideTransition(
+          position: Tween<Offset>(
+            begin: const Offset(0, .1),
+            end: Offset.zero,
+          ).animate(animation),
+          child: Material(
+            type: MaterialType.transparency,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Center(
+                  child: OfferCardWidget(
+                    sponsoredOfferModel: sponsoredOfferModel,
+                    offerModel: offerModel,
+                    expiry: expiry,
+                    amount: amount,
+                    isExpanded: true,
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ),
+      ),
+    );
+  }
 }

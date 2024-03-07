@@ -29,6 +29,7 @@ final class _IconButton extends StatelessWidget {
               onPressed!.call();
             }
           : null,
+      constraints: const BoxConstraints(maxHeight: kMinInteractiveDimension * .7, maxWidth: kMinInteractiveDimension * .7),
       style: IconButton.styleFrom(
         backgroundColor: backgroundColor ?? context.colors.primary,
         shape: shape ?? RoundedRectangleBorder(borderRadius: context.radius12),

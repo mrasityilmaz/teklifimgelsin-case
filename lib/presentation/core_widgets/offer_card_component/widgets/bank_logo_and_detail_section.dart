@@ -2,10 +2,11 @@ part of '../offer_card_component.dart';
 
 @immutable
 final class _BankLogoAndDetailSection extends StatelessWidget {
-  const _BankLogoAndDetailSection({required this.bankId, this.isSponsored = false});
+  const _BankLogoAndDetailSection({required this.bankId, this.isSponsored = false, this.isExpanded = false});
   final bool isSponsored;
 
   final int? bankId;
+  final bool isExpanded;
 
   @override
   Widget build(BuildContext context) {
@@ -60,19 +61,49 @@ final class _BankLogoAndDetailSection extends StatelessWidget {
                 ),
               ],
 
-              Row(
-                children: [
-                  Text('Detaylar', style: context.textTheme.labelSmall?.copyWith(fontWeight: FontWeight.w400, color: context.appColors.primaryBlackTextColor, letterSpacing: .2)),
-                  Padding(
-                    padding: const EdgeInsets.only(top: 2),
-                    child: Icon(CupertinoIcons.chevron_forward, size: 12, color: context.appColors.primaryBlackTextColor),
-                  ),
-                ],
-              ),
+              if (isExpanded) ...[
+                const __CloseIcon(),
+              ] else ...[
+                const __DetailsText(),
+              ],
             ],
           );
         },
       ),
+    );
+  }
+}
+
+@immutable
+final class __DetailsText extends StatelessWidget {
+  const __DetailsText();
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        Text('Detaylar', style: context.textTheme.labelSmall?.copyWith(fontWeight: FontWeight.w400, color: context.appColors.primaryBlackTextColor, letterSpacing: .2)),
+        Padding(
+          padding: const EdgeInsets.only(top: 2),
+          child: Icon(CupertinoIcons.chevron_forward, size: 12, color: context.appColors.primaryBlackTextColor),
+        ),
+      ],
+    );
+  }
+}
+
+@immutable
+final class __CloseIcon extends StatelessWidget {
+  const __CloseIcon();
+
+  @override
+  Widget build(BuildContext context) {
+    return AdvancedButtonWidget.icon(
+      padding: EdgeInsets.zero,
+      icon: Icon(CupertinoIcons.xmark, size: 20, color: context.appColors.primaryBlackTextColor),
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
     );
   }
 }
