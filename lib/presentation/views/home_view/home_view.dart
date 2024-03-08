@@ -41,12 +41,7 @@ final class HomeView extends StatelessWidget {
                 const AdBannerWidget(
                   imageUrl: 'https://cdn.teklifimgelsin.com/images/banners/QNB_30k_720x250.webp',
                 ).wrapInSliverToBoxAdapter,
-                const _HomeSearchTitleWidget(
-                  amountByK: 52,
-                  count: 24,
-                  loanType: 'İhtiyaç',
-                  mount: 36,
-                ).wrapInSliverToBoxAdapter,
+                const _HomeSearchTitleWidget().wrapInSliverToBoxAdapter,
                 const _HomeTitleButtonSection().wrapInSliverToBoxAdapter,
                 SizedBox(
                   height: context.normalValue,

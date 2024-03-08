@@ -18,12 +18,13 @@ import '../data/repositories/offer_repository/data_sources/offer_http_repository
     as _i4;
 import '../data/repositories/offer_repository/data_sources/offer_mock_repository.dart'
     as _i5;
-import '../data/repositories/offer_repository/offer_repository.dart' as _i9;
+import '../data/repositories/offer_repository/offer_repository.dart' as _i10;
+import '../data/services/search_params_service.dart' as _i8;
 import '../domain/repositories/offer_repository/data_sources/ilocal_repository.dart'
-    as _i10;
+    as _i11;
 import '../domain/repositories/offer_repository/data_sources/iremote_repository.dart'
     as _i3;
-import '../domain/repositories/offer_repository/i_offer_repository.dart' as _i8;
+import '../domain/repositories/offer_repository/i_offer_repository.dart' as _i9;
 
 const String _real = 'real';
 const String _mock = 'mock';
@@ -49,9 +50,10 @@ _i1.GetIt $initGetIt(
   );
   gh.lazySingleton<_i6.MockReaderService>(() => _i6.MockReaderService());
   gh.lazySingleton<_i7.NetworkInfo>(() => _i7.NetworkInfoImpl());
-  gh.lazySingleton<_i8.IOfferRepository>(() => _i9.OfferRepository(
+  gh.lazySingleton<_i8.SearchParamsService>(() => _i8.SearchParamsService());
+  gh.lazySingleton<_i9.IOfferRepository>(() => _i10.OfferRepository(
         remoteDataSource: gh<_i3.IOfferRemoteRepository>(),
-        localDataSource: gh<_i10.IOfferLocalRepository>(),
+        localDataSource: gh<_i11.IOfferLocalRepository>(),
         networkInfo: gh<_i7.NetworkInfo>(),
       ));
   return getIt;

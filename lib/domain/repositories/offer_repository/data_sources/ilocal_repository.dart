@@ -1,3 +1,5 @@
+
+
 abstract class IOfferLocalRepository {
   ///
   ///  Local repository interface
@@ -5,4 +7,5 @@ abstract class IOfferLocalRepository {
   ///  For example:
   ///  Future<Either<Failure, DataModel<Data>>> getDataFromLocal();
   ///
+
 }

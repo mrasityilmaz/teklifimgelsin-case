@@ -3,6 +3,7 @@ import 'dart:async';
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:my_coding_setup/core/services/logger/logger_service.dart';
+import 'package:my_coding_setup/data/services/hive_service/hive_service.dart';
 import 'package:my_coding_setup/injection/injection_container.dart';
 import 'package:my_coding_setup/presentation/views/home_view/home_view.dart';
 import 'package:my_coding_setup/shared/app_theme.dart';
@@ -13,6 +14,12 @@ void main() async {
     WidgetsFlutterBinding.ensureInitialized();
     await ThemeManager.initialise();
 
+    ///
+    /// Hive Service Initialization and Adapter Registration
+    ///
+    await HiveService.instance.init();
+
+    ///
     /// Configure Dependencies for the GetIt Service Locator
     ///
     await configureDependencies();

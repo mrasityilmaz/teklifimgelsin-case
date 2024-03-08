@@ -1,19 +1,14 @@
 part of '../home_view.dart';
 
-final class _HomeSearchTitleWidget extends StatelessWidget {
-  const _HomeSearchTitleWidget({
-    required this.mount,
-    required this.amountByK,
-    required this.loanType,
-    required this.count,
-  });
-  final int mount;
-  final double amountByK;
-  final String loanType;
-  final int count;
+final class _HomeSearchTitleWidget extends ViewModelWidget<HomeViewModel> {
+  const _HomeSearchTitleWidget();
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, HomeViewModel viewModel) {
+    final int mount = viewModel.activeSearchParams.expiry;
+    final double amountByK = viewModel.activeSearchParams.amount / 1000;
+    final int count = viewModel.offersResponse?.activeOffers?.length ?? 0;
+    final String loanType = viewModel.activeSearchParams.loanType.name;
     return Padding(
       padding: context.screenPaddingHorizontal + context.paddingNormalVertical,
       child: Text(

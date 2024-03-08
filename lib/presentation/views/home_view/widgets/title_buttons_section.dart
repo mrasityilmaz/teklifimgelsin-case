@@ -30,8 +30,6 @@ final class _HomeTitleButtonSection extends StatelessWidget {
                   context,
                   showDragHandle: true,
                   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-                  useSafeArea: true,
-                  constraints: const BoxConstraints(),
                   child: const SearchParamsView(),
                 );
               },

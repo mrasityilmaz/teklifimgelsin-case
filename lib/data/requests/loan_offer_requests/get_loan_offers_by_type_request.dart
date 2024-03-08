@@ -16,6 +16,6 @@ final class GetLoanOffersRequest extends IRestApiRequest {
     authorize = false;
   }
   final LoanTypeEnum loanType;
-  final int loanAmount;
+  final double loanAmount;
   final int loanTerm;
 }

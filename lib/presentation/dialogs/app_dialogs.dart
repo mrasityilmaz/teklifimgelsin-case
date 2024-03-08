@@ -46,6 +46,7 @@ final class AppDialogs {
       transitionAnimationController: transitionAnimationController,
       useSafeArea: useSafeArea,
       anchorPoint: anchorPoint,
+      scrollControlDisabledMaxHeightRatio: 1,
       showDragHandle: showDragHandle,
       builder: (BuildContext context) {
         return child;

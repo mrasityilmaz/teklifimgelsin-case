@@ -31,3 +31,23 @@ extension CurrencySymbolExtension on String {
     return '%$this';
   }
 }
+
+extension StringToNumExtension on String? {
+  int? get toIntOrNull {
+    if (this == null || this?.isEmpty == true || this?._clearString == null || this?._clearString?.isEmpty == true) {
+      return null;
+    }
+    return int.tryParse(this!._clearString!);
+  }
+
+  double? get toDoubleOrNull {
+    if (this == null || this?.isEmpty == true || this?._clearString == null || this?._clearString?.isEmpty == true) {
+      return null;
+    }
+    return double.tryParse(this!._clearString!);
+  }
+
+  String? get _clearString {
+    return this?.replaceAll(RegExp('[^0-9]'), '');
+  }
+}
