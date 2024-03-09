@@ -28,3 +28,10 @@ class UnExpectedFailure<T> extends Failure {
   final String? errorMessage;
   final T? data;
 }
+
+class OfferLimitFailure extends Failure {
+  OfferLimitFailure({required this.errorMessage, required this.errorAmountValue, required this.errorExpiryValue}) : super([errorMessage, errorAmountValue, errorExpiryValue]);
+  final String errorMessage;
+  final int errorExpiryValue;
+  final double errorAmountValue;
+}

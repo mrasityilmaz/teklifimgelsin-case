@@ -4,6 +4,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:my_coding_setup/assets.dart';
 import 'package:my_coding_setup/core/extensions/context_extension.dart';
 import 'package:my_coding_setup/core/extensions/sliver_extension.dart';
+import 'package:my_coding_setup/data/models/offer_response_model/offers_response_model.dart';
 import 'package:my_coding_setup/presentation/core_widgets/ad_banner_widget/ad_banner_widget.dart';
 import 'package:my_coding_setup/presentation/core_widgets/advanced_button/advanced_button_widget.dart';
 import 'package:my_coding_setup/presentation/core_widgets/date_now_widget/date_now_widget.dart';
@@ -25,7 +26,7 @@ final class HomeView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ViewModelBuilder.reactive(
+    return ViewModelBuilder.nonReactive(
       viewModelBuilder: HomeViewModel.new,
       onViewModelReady: (viewModel) async {
         await viewModel.getOffers();

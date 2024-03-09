@@ -9,6 +9,7 @@ final class _WidgetButton extends StatelessWidget {
     this.shape,
     this.padding,
     this.expand = false,
+    this.showDisabledBacgroundColor = true,
   });
 
   final Widget child;
@@ -19,7 +20,7 @@ final class _WidgetButton extends StatelessWidget {
 
   final EdgeInsetsGeometry? padding;
   final bool expand;
-
+  final bool showDisabledBacgroundColor;
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -29,6 +30,7 @@ final class _WidgetButton extends StatelessWidget {
             }
           : null,
       style: TextButton.styleFrom(
+        disabledBackgroundColor: showDisabledBacgroundColor ? context.appColors.primaryGreyBorderColor.withOpacity(.6) : null,
         backgroundColor: backgroundColor ?? context.colors.primary,
         shape: shape ?? RoundedRectangleBorder(borderRadius: context.radius12),
         minimumSize: expand ? const Size(double.infinity, kMinInteractiveDimension) : null,

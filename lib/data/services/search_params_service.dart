@@ -32,7 +32,7 @@ final class SearchParamsService with ListenableServiceMixin {
 
   List<SearchParamsModel> get lastSearchedParamList => _searchParamsBoxService.searchedParamList;
 
-  SearchParamsModel? get _lastSearchParams => lastSearchedParamList.isNotEmpty ? lastSearchedParamList.first : null;
+  SearchParamsModel? get _lastSearchParams => lastSearchedParamList.isNotEmpty ? lastSearchedParamList.last : null;
 
   ///
   /// Methods
@@ -64,4 +64,6 @@ final class SearchParamsService with ListenableServiceMixin {
 
     notifyListeners();
   }
+
+  DateTime get _veryOldDate => DateTime(1900);
 }

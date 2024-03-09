@@ -13,8 +13,8 @@ final class _ActiveOffersSection extends ViewModelWidget<HomeViewModel> {
           final offer = viewModel.offersResponse?.activeOffers?[index];
           return OfferCardWidget(
             offerModel: offer,
-            expiry: 12,
-            amount: 60000,
+            expiry: viewModel.activeSearchParams.expiry,
+            amount: viewModel.activeSearchParams.amount,
           );
         },
       );

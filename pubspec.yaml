@@ -34,7 +34,6 @@ dependencies:
   injectable: ^2.3.0
   internet_connection_checker: ^1.0.0+1
   freezed_annotation: ^2.4.1
-  rest_api_package: ^1.0.0+2
   stacked: ^3.4.1
   dio: ^5.4.1
   logger: ^2.1.0
@@ -46,6 +45,11 @@ dependencies:
   hive: ^2.2.3
   hive_flutter: ^1.1.0
   uuid: ^4.3.3
+  animated_custom_dropdown: ^3.0.0
+  rest_api_package:
+    git:
+      url: https://github.com/mrasityilmaz/rest-api-package-fork.git
+  darq: ^2.0.0
 
 ###
 ### Dependencies

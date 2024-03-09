@@ -11,6 +11,7 @@ final class _IconTextButton extends StatelessWidget {
     this.padding,
     this.textStyle,
     this.expand = false,
+    this.showDisabledBacgroundColor = true,
   });
 
   final Widget icon;
@@ -24,6 +25,7 @@ final class _IconTextButton extends StatelessWidget {
 
   final EdgeInsetsGeometry? padding;
   final bool expand;
+  final bool showDisabledBacgroundColor;
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +41,7 @@ final class _IconTextButton extends StatelessWidget {
             }
           : null,
       style: TextButton.styleFrom(
+        disabledBackgroundColor: showDisabledBacgroundColor ? context.appColors.primaryGreyBorderColor.withOpacity(.6) : null,
         backgroundColor: backgroundColor ?? context.colors.primary,
         shape: shape ?? RoundedRectangleBorder(borderRadius: context.radius12),
         minimumSize: expand ? const Size(double.infinity, kMinInteractiveDimension) : null,

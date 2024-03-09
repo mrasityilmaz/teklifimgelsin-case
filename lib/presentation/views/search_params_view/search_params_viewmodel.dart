@@ -1,24 +1,27 @@
-import 'dart:math';
-
+import 'package:darq/darq.dart';
 import 'package:flutter/material.dart';
+import 'package:my_coding_setup/core/errors/errors.dart';
+import 'package:my_coding_setup/core/extensions/failure_extension.dart';
+import 'package:my_coding_setup/core/extensions/list_extension.dart';
 import 'package:my_coding_setup/core/extensions/num_extension.dart';
 import 'package:my_coding_setup/core/extensions/string_extension.dart';
 import 'package:my_coding_setup/core/services/logger/logger_service.dart';
+import 'package:my_coding_setup/data/enums/credit_type_enum.dart';
+import 'package:my_coding_setup/data/models/offer_response_model/offers_response_model.dart';
 import 'package:my_coding_setup/data/models/search_params_model/search_params_model.dart';
 import 'package:my_coding_setup/data/services/search_params_service.dart';
+import 'package:my_coding_setup/domain/repositories/offer_repository/i_offer_repository.dart';
 import 'package:my_coding_setup/injection/injection_container.dart';
 import 'package:stacked/stacked.dart';
 
+part 'mixins/search_offer_mixin.dart';
 part 'mixins/search_params_mixin.dart';
 
-final class SearchParamsViewModel extends ReactiveViewModel with _SearchParamsViewMixin {
+final class SearchParamsViewModel extends ReactiveViewModel with _SearchParamsViewMixin, _SearchOfferMixin {
   SearchParamsViewModel() {
     initMixin();
 
-    localSearchParams = activeSearchParams;
-
-    amountController.text = activeSearchParams.amount.formatToTRCurrencyWithoutAfterDecimal.withTLSymbol;
-    monthController.text = '${activeSearchParams.expiry} Ay';
+    updateLocalSearchParams(activeSearchParams);
   }
 
   ///
@@ -31,6 +34,8 @@ final class SearchParamsViewModel extends ReactiveViewModel with _SearchParamsVi
   ///
   /// Local variables
   ///
+  final GlobalKey confirmButtonBusyIndicatorKey = GlobalKey();
+  OffersResponseModel? _offerResponseModel;
 
   ///
   /// Getters
@@ -49,7 +54,7 @@ final class SearchParamsViewModel extends ReactiveViewModel with _SearchParamsVi
   ///
   /// !!! Use only with confirm button to update the search parameters
   ///
-  Future<void> _updateSearchParams(SearchParamsModel searchParams) async {
+  Future<void> _updateGlobalSearchParams(SearchParamsModel searchParams) async {
     await _searchParamsService.updateSearchParams(searchParams);
   }
 
@@ -60,30 +65,46 @@ final class SearchParamsViewModel extends ReactiveViewModel with _SearchParamsVi
     await _searchParamsService.deleteSearchParams(searchParams);
   }
 
-  Future<void> onPressedSearchButton() async {
+  ///
+  /// Confirm butonuna basıldığında mevcut Global SearchParamsModel'in güncellenmesi için kullanılır
+  ///
+  Future<void> onPressedSearchButton(BuildContext context) async {
     try {
-      await _updateSearchParams(localSearchParams!);
+      if (localSearchParams == null) {
+        return;
+      }
+
+      await runBusyFuture(
+        _updateGlobalSearchParams(localSearchParams!),
+      ).then((value) {
+        Navigator.of(context).pop<OffersResponseModel?>(_offerResponseModel);
+      });
     } catch (e, s) {
       LoggerService.instance.catchLog(e, s);
     }
   }
 
-  Future<bool> fakeResponse() async {
-    await Future.delayed(const Duration(milliseconds: 500), () {
-      debugPrint('${localSearchParams?.amount} - ${localSearchParams?.expiry} - ${localSearchParams?.loanType}');
-      if (Random().nextBool()) {
-        onChangedExpirySlider(24);
-        setError('Hata oluştu lütfen tekrar deneyin');
-        notifyListeners();
-        return false;
-      } else {
-        setError(null);
-        onChangedExpirySlider(32);
-        return true;
+  ///
+  /// Amount veya Expiry değerleri değiştiğinde tetiklenir ve olası uyarı mesajlarını basar ve kredi tekliflerini getirir
+  ///
+  Future<void> fetchOffersWithNewParams() async {
+    try {
+      if (localSearchParams == null || (isAmountValid(localSearchParams?.amount ?? 0) == false && isExpiryValid((localSearchParams?.expiry ?? 0).toDouble()) == false)) {
+        return;
       }
-    });
 
-    return true;
+      final result = await runBusyFuture(checkResponsesForNewParams(localSearchParams: localSearchParams!), busyObject: confirmButtonBusyIndicatorKey);
+
+      if (result.limitFailure != null) {
+        setErrorForModelOrObject(result.limitFailure, key: limitErrorKey);
+      }
+      if (result.successOfferResponse != null) {
+        setExpiryValue((result.successOfferResponse!.maturity ?? localSearchParams!.loanType.lowerExpiryLimit).toDouble());
+        _offerResponseModel = result.successOfferResponse;
+      }
+    } catch (e, s) {
+      LoggerService.instance.catchLog(e, s);
+    }
   }
 
   ////

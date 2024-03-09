@@ -16,6 +16,7 @@ final class AdvancedButtonWidget extends _IAdvancedButtonWidget {
     super.shape,
     super.padding,
     super.expand = false,
+    super.showDisabledBacgroundColor,
   }) : super(
           type: _AdvancedButtonType.widget,
           text: '',
@@ -45,6 +46,7 @@ final class AdvancedButtonWidget extends _IAdvancedButtonWidget {
     super.shape,
     super.padding,
     super.expand = false,
+    super.showDisabledBacgroundColor,
   }) : super(
           type: _AdvancedButtonType.iconText,
           child: const SizedBox(),
@@ -58,6 +60,7 @@ final class AdvancedButtonWidget extends _IAdvancedButtonWidget {
     super.textStyle,
     super.padding,
     super.expand = false,
+    super.showDisabledBacgroundColor,
   }) : super(
           type: _AdvancedButtonType.text,
           child: const SizedBox(),
@@ -76,6 +79,7 @@ final class AdvancedButtonWidget extends _IAdvancedButtonWidget {
           textStyle: textStyle,
           padding: padding,
           expand: expand,
+          showDisabledBacgroundColor: showDisabledBacgroundColor,
         );
       case _AdvancedButtonType.icon:
         return _IconButton(
@@ -95,6 +99,7 @@ final class AdvancedButtonWidget extends _IAdvancedButtonWidget {
           shape: shape,
           expand: expand,
           textStyle: textStyle,
+          showDisabledBacgroundColor: showDisabledBacgroundColor,
         );
       case _AdvancedButtonType.widget:
         return _WidgetButton(
@@ -103,6 +108,7 @@ final class AdvancedButtonWidget extends _IAdvancedButtonWidget {
           padding: padding,
           shape: shape,
           expand: expand,
+          showDisabledBacgroundColor: showDisabledBacgroundColor,
           child: child,
         );
     }

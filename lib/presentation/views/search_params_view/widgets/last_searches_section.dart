@@ -39,18 +39,30 @@ final class _LastSearchesSection extends ViewModelWidget<SearchParamsViewModel> 
                     icon: Icon(Icons.remove_circle_outline_rounded, color: Colors.red.withOpacity(.5)),
                     onPressed: () async => viewModel.deleteSearhParam(e),
                   ),
-                  title: Row(
+                  title: Column(
+                    mainAxisSize: MainAxisSize.min,
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      Text(
-                        e.amount.formatToTRCurrencyWithoutAfterDecimal.withTLSymbol,
-                        style: context.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w400, color: context.appColors.secondaryBlackTextColor),
+                      Row(
+                        children: [
+                          Text(
+                            e.amount.formatToTRCurrencyWithoutAfterDecimal.withTLSymbol,
+                            style: context.textTheme.titleMedium?.copyWith(fontWeight: FontWeight.w400, color: context.appColors.secondaryBlackTextColor),
+                          ),
+                          SizedBox(width: context.normalValue),
+                          Text('${e.expiry} Ay', style: context.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w400, color: context.appColors.secondaryBlackTextColor)),
+                        ],
                       ),
-                      SizedBox(width: context.normalValue),
-                      Text('${e.expiry} Ay', style: context.textTheme.bodyLarge?.copyWith(fontWeight: FontWeight.w400, color: context.appColors.secondaryBlackTextColor)),
+                      Text(
+                        e.loanType.text,
+                        style: context.textTheme.bodySmall?.copyWith(fontWeight: FontWeight.w400, color: context.appColors.secondaryBlackTextColor),
+                      ),
                     ],
                   ),
-                  onTap: () {
+                  onTap: () async {
                     viewModel.updateLocalSearchParams(e);
+                    await viewModel.fetchOffersWithNewParams();
                   },
                 );
               },

@@ -13,8 +13,8 @@ final class _SponsoredOffersSection extends ViewModelWidget<HomeViewModel> {
           final offer = viewModel.offersResponse?.sponsoredOffers?[index];
           return OfferCardWidget(
             sponsoredOfferModel: offer,
-            expiry: 12,
-            amount: 1000,
+            expiry: viewModel.activeSearchParams.expiry,
+            amount: viewModel.activeSearchParams.amount,
           );
         },
       );

@@ -10,6 +10,7 @@ final class _TextButton extends StatelessWidget {
     this.shape,
     this.padding,
     this.expand = false,
+    this.showDisabledBacgroundColor = true,
   });
 
   final String text;
@@ -20,7 +21,7 @@ final class _TextButton extends StatelessWidget {
   final TextStyle? textStyle;
   final EdgeInsetsGeometry? padding;
   final bool expand;
-
+  final bool showDisabledBacgroundColor;
   @override
   Widget build(BuildContext context) {
     return TextButton(
@@ -30,6 +31,7 @@ final class _TextButton extends StatelessWidget {
             }
           : null,
       style: TextButton.styleFrom(
+        disabledBackgroundColor: showDisabledBacgroundColor ? context.appColors.primaryGreyBorderColor.withOpacity(.6) : null,
         backgroundColor: backgroundColor ?? context.colors.primary,
         minimumSize: expand ? const Size(double.infinity, kMinInteractiveDimension) : null,
         fixedSize: expand ? const Size(double.infinity, kMinInteractiveDimension) : null,

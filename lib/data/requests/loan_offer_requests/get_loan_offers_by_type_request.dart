@@ -9,7 +9,7 @@ final class GetLoanOffersRequest extends IRestApiRequest {
     required this.loanTerm,
   }) {
     baseUrl = APIConstants.baseURL;
-    endPoint = '${APIConstants.getLoanOffersByTypeEndPoint}?kredi_tipi=${loanType.value}&vade=$loanTerm&tutar=$loanAmount';
+    endPoint = '${APIConstants.getLoanOffersByTypeEndPoint}?kredi_tipi=${loanType.value}&vade=$loanTerm&tutar=${loanAmount.toInt()}';
 
     requestMethod = RequestMethod.GET;
 

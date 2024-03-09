@@ -17,6 +17,7 @@ final class _AmountTextFieldWidget extends ViewModelWidget<SearchParamsViewModel
         color: context.appColors.primaryBlackTextColor,
         fontWeight: FontWeight.w400,
       ),
+      onChanged: (s) async => viewModel.fetchOffersWithNewParams(),
       onTap: viewModel.tryToCloseExpansionTile,
       inputFormatter: [CustomAmountFormatter()],
       suffixIcon: Container(

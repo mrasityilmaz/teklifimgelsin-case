@@ -29,16 +29,19 @@ final class HomeViewModel extends ReactiveViewModel {
 
   Future<void> getOffers() async {
     try {
-      await runBusyFuture(_offerRepository.getLoanOffers(searchParams: activeSearchParams)).then(
-        (value) => value.fold((l) => debugPrint(l.toString()), (r) {
-          _offersResponse = r;
-
-          notifyListeners();
-        }),
+      await runBusyFuture(
+        _offerRepository.getLoanOffers(searchParams: activeSearchParams),
+      ).then(
+        (value) => value.fold((l) => debugPrint(l.toString()), setOfferList),
       );
     } catch (e, s) {
       LoggerService.instance.catchLog(e, s);
     }
+  }
+
+  void setOfferList(OffersResponseModel offersResponse) {
+    _offersResponse = offersResponse;
+    notifyListeners();
   }
 
   ////

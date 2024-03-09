@@ -1,11 +1,11 @@
 part of '../home_view.dart';
 
 @immutable
-final class _HomeTitleButtonSection extends StatelessWidget {
-  const _HomeTitleButtonSection();
+final class _HomeTitleButtonSection extends ViewModelWidget<HomeViewModel> {
+  const _HomeTitleButtonSection() : super(reactive: false);
 
   @override
-  Widget build(BuildContext context) {
+  Widget build(BuildContext context, HomeViewModel viewModel) {
     return Padding(
       padding: context.screenPaddingHorizontal,
       child: Row(
@@ -26,12 +26,16 @@ final class _HomeTitleButtonSection extends StatelessWidget {
                 fontWeight: FontWeight.w800,
               ),
               onPressed: () async {
-                await AppDialogs.instance.showModalBottomSheetDialog<void>(
+                final offers = await AppDialogs.instance.showModalBottomSheetDialog<OffersResponseModel?>(
                   context,
                   showDragHandle: true,
                   shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-                  child: const SearchParamsView(),
+                  child: const SearchParamsView<OffersResponseModel?>(),
                 );
+
+                if (offers != null) {
+                  viewModel.setOfferList(offers);
+                }
               },
               backgroundColor: context.appColors.primaryGreyBackgroundColor,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8), side: BorderSide(color: context.appColors.primaryGreyBorderColor)),

@@ -11,24 +11,67 @@ mixin _SearchParamsViewMixin on ReactiveViewModel {
   /// Initialize the mixin variables
   ///
   void initMixin() {
-    amountController = TextEditingController(text: '1.000'.withTLSymbol)..addListener(onChangedAmountText);
-    monthController = TextEditingController(text: '1 Ay')..addListener(onChangedExpiryText);
+    amountController = TextEditingController(text: '1.000'.withTLSymbol)
+      ..addListener(() {
+        final double? amount = amountController.text.toDoubleOrNull;
+        if (amount == null) {
+          return;
+        } else {
+          setAmountValue(amount);
+        }
+      });
+
+    ///
+    ///
+    ///
+    monthController = TextEditingController(text: '1 Ay')
+      ..addListener(() {
+        final int? month = monthController.text.toIntOrNull;
+        if (month == null) {
+          return;
+        } else {
+          setExpiryValue(month.toDouble());
+        }
+      });
+
+    ///
+    ///
+    ///
     expansionTileController = ExpansionTileController();
   }
 
-  void onChangedAmountText() {
-    try {
-      final double? amount = amountController.text.toDoubleOrNull;
-      if (amount == null) {
-        return;
-      } else {
-        if (amount != localSearchParams?.amount && amount >= 1000 && amount <= 300000) {
-          localSearchParams = localSearchParams?.copyWith(
-            amount: amount,
-          );
+  double? get amountFromTextController => amountController.text.toDoubleOrNull;
 
-          tryToCloseExpansionTile();
-          notifyListeners();
+  double? get expiryFromTextController => monthController.text.toDoubleOrNull;
+
+  ///
+  ///
+  ///
+
+  void updateLocalSearchParams(SearchParamsModel searchParamsValue) {
+    try {
+      localSearchParams = searchParamsValue;
+      setAmountValue(searchParamsValue.amount);
+      setExpiryValue(searchParamsValue.expiry.toDouble());
+      tryToCloseExpansionTile();
+      notifyListeners();
+    } catch (e, s) {
+      LoggerService.instance.catchLog(e, s);
+    }
+  }
+
+  void setAmountValue(double value) {
+    try {
+      if (isAmountValid(value)) {
+        if (value != amountFromTextController) {
+          amountController.text = value.formatToTRCurrencyWithoutAfterDecimal.withTLSymbol;
+        }
+        if (value != localSearchParams?.amount) {
+          updateLocalSearchParams(
+            localSearchParams!.copyWith(
+              amount: value,
+            ),
+          );
         }
       }
     } catch (e, s) {
@@ -36,19 +79,18 @@ mixin _SearchParamsViewMixin on ReactiveViewModel {
     }
   }
 
-  void onChangedExpiryText() {
+  void setExpiryValue(double value) {
     try {
-      final int? month = monthController.text.toIntOrNull;
-      if (month == null) {
-        return;
-      } else {
-        if (month >= 1 && month <= 36 && month != localSearchParams?.expiry) {
-          localSearchParams = localSearchParams?.copyWith(
-            expiry: month,
+      if (isExpiryValid(value)) {
+        if (value != expiryFromTextController) {
+          monthController.text = '${value.toInt()} Ay';
+        }
+        if (value != localSearchParams?.expiry) {
+          updateLocalSearchParams(
+            localSearchParams!.copyWith(
+              expiry: value.toInt(),
+            ),
           );
-
-          tryToCloseExpansionTile();
-          notifyListeners();
         }
       }
     } catch (e, s) {
@@ -56,55 +98,114 @@ mixin _SearchParamsViewMixin on ReactiveViewModel {
     }
   }
 
-  void onChangedAmountSlider(double value) {
-    try {
-      if (value >= 1000 && value <= 300000) {
-        localSearchParams = localSearchParams?.copyWith(
-          amount: value,
-        );
-
-        amountController.text = value.formatToTRCurrencyWithoutAfterDecimal.withTLSymbol;
-        tryToCloseExpansionTile();
-        notifyListeners();
-      }
-    } catch (e, s) {
-      LoggerService.instance.catchLog(e, s);
-    }
+  void setLoanType(LoanTypeEnum value) {
+    clearErrors();
+    updateLocalSearchParams(
+      localSearchParams!.copyWith(
+        loanType: value,
+        amount: value.lowerAmountLimit,
+        expiry: value.lowerExpiryLimit,
+      ),
+    );
   }
 
-  void onChangedExpirySlider(double value) {
-    try {
-      if (value >= 1 && value <= 36) {
-        localSearchParams = localSearchParams?.copyWith(
-          expiry: value.toInt(),
-        );
+  // void onChangedAmountText() {
+  //   try {
+  //     final double? amount = amountController.text.toDoubleOrNull;
+  //     if (amount == null) {
+  //       return;
+  //     } else {
+  //       if (amount != localSearchParams?.amount && isAmountValid(amount)) {
+  //         localSearchParams = localSearchParams?.copyWith(
+  //           amount: amount,
+  //         );
 
-        monthController.text = '${value.toInt()} Ay';
-        tryToCloseExpansionTile();
-        notifyListeners();
-      }
-    } catch (e, s) {
-      LoggerService.instance.catchLog(e, s);
-    }
-  }
+  //         tryToCloseExpansionTile();
+  //         notifyListeners();
+  //       }
+  //     }
+  //   } catch (e, s) {
+  //     LoggerService.instance.catchLog(e, s);
+  //   }
+  // }
+
+  // void onChangedExpiryText() {
+  //   try {
+  //     final int? month = monthController.text.toIntOrNull;
+  //     if (month == null) {
+  //       return;
+  //     } else {
+  //       if (month != localSearchParams?.expiry && isExpiryValid(month.toDouble())) {
+  //         localSearchParams = localSearchParams?.copyWith(
+  //           expiry: month,
+  //         );
+
+  //         tryToCloseExpansionTile();
+  //         notifyListeners();
+  //       }
+  //     }
+  //   } catch (e, s) {
+  //     LoggerService.instance.catchLog(e, s);
+  //   }
+  // }
+
+  // void onChangedAmountSlider(double value) {
+  //   try {
+  //     if (isAmountValid(value)) {
+  //       localSearchParams = localSearchParams?.copyWith(
+  //         amount: value,
+  //       );
+
+  //       amountController.text = value.formatToTRCurrencyWithoutAfterDecimal.withTLSymbol;
+  //       tryToCloseExpansionTile();
+  //       notifyListeners();
+  //     }
+  //   } catch (e, s) {
+  //     LoggerService.instance.catchLog(e, s);
+  //   }
+  // }
+
+  // void onChangedExpirySlider(double value) {
+  //   try {
+  //     if (isExpiryValid(value)) {
+  //       localSearchParams = localSearchParams?.copyWith(
+  //         expiry: value.toInt(),
+  //       );
+
+  //       monthController.text = '${value.toInt()} Ay';
+  //       tryToCloseExpansionTile();
+  //       notifyListeners();
+  //     }
+  //   } catch (e, s) {
+  //     LoggerService.instance.catchLog(e, s);
+  //   }
+  // }
+
+  // void onChangedLoanType(LoanTypeEnum loanType) {
+  //   localSearchParams = localSearchParams?.copyWith(
+  //     loanType: loanType,
+  //     amount: loanType.lowerAmountLimit,
+  //     expiry: loanType.lowerExpiryLimit,
+  //   );
+
+  //   if (localSearchParams?.amount != null) {
+  //     amountController.text = localSearchParams!.amount.formatToTRCurrencyWithoutAfterDecimal.withTLSymbol;
+  //   }
+
+  //   if (localSearchParams?.expiry != null) {
+  //     monthController.text = '${localSearchParams!.expiry} Ay';
+  //   }
+
+  //   notifyListeners();
+  // }
 
   void tryToCloseExpansionTile() {
     try {
       if (expansionTileController.isExpanded) {
         expansionTileController.collapse();
       }
-    } catch (e, s) {
-      LoggerService.instance.catchLog(e, s);
-    }
-  }
-
-  void updateLocalSearchParams(SearchParamsModel searchParamsValue) {
-    try {
-      onChangedAmountSlider(searchParamsValue.amount);
-      onChangedExpirySlider(searchParamsValue.expiry.toDouble());
-    } catch (e, s) {
-      LoggerService.instance.catchLog(e, s);
-    }
+      // ignore: empty_catches
+    } catch (e) {}
   }
 
   ///
@@ -119,4 +220,10 @@ mixin _SearchParamsViewMixin on ReactiveViewModel {
       ..removeListener(() {})
       ..dispose();
   }
+
+  LoanTypeEnum get selectedLoanType => localSearchParams?.loanType ?? LoanTypeEnum.personalFinanceLoan;
+
+  bool isAmountValid(double value) => selectedLoanType.lowerAmountLimit <= value && value <= selectedLoanType.upperAmountLimit;
+
+  bool isExpiryValid(double value) => selectedLoanType.lowerExpiryLimit <= value && value <= selectedLoanType.upperExpiryLimit;
 }

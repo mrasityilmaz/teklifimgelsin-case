@@ -21,13 +21,14 @@ final class _ExpirySliderWidget extends ViewModelWidget<SearchParamsViewModel> {
         ),
       ),
       child: Padding(
-        padding: context.paddingLowHorizontal * .5,
+        padding: context.paddingLowHorizontal * 1.2,
         child: Slider(
-          value: viewModel.localSearchParams?.expiry.toDouble() ?? 1,
-          divisions: 36,
-          min: 1,
-          max: 36,
-          onChanged: viewModel.onChangedExpirySlider,
+          value: viewModel.localSearchParams?.expiry.toDouble() ?? viewModel.selectedLoanType.lowerExpiryLimit.toDouble(),
+          divisions: viewModel.selectedLoanType.upperExpiryLimit - 1,
+          min: viewModel.selectedLoanType.lowerExpiryLimit.toDouble(),
+          max: viewModel.selectedLoanType.upperExpiryLimit.toDouble(),
+          onChanged: viewModel.setExpiryValue,
+          onChangeEnd: (a) async => viewModel.fetchOffersWithNewParams(),
         ),
       ),
     );

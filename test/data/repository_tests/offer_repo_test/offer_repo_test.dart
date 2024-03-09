@@ -10,10 +10,6 @@ import 'package:my_coding_setup/domain/repositories/offer_repository/i_offer_rep
 import 'package:my_coding_setup/injection/injection_container.dart';
 
 void main() async {
-  ///
-  /// That part is unnecessary for testing but this way provides you to test your repository with your mock or real data.
-  ///
-
   WidgetsFlutterBinding.ensureInitialized();
 
   ///

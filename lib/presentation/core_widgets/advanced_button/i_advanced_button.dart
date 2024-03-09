@@ -13,6 +13,7 @@ sealed class _IAdvancedButtonWidget extends StatelessWidget {
     this.shape,
     this.textStyle,
     this.expand = false,
+    this.showDisabledBacgroundColor = true,
   });
 
   final void Function()? onPressed;
@@ -26,6 +27,7 @@ sealed class _IAdvancedButtonWidget extends StatelessWidget {
   final TextStyle? textStyle;
   final OutlinedBorder? shape;
   final bool expand;
+  final bool showDisabledBacgroundColor;
 }
 
 enum _AdvancedButtonType { text, icon, iconText, widget }

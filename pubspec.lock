@@ -17,6 +17,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "5.13.0"
+  animated_custom_dropdown:
+    dependency: "direct main"
+    description:
+      name: animated_custom_dropdown
+      sha256: "9e286defa42f2e774285015d7ff29523a24260888d53f79a3635328fad5bdad7"
+      url: "https://pub.dev"
+    source: hosted
+    version: "3.0.0"
   args:
     dependency: transitive
     description:
@@ -201,6 +209,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "1.0.6"
+  darq:
+    dependency: "direct main"
+    description:
+      name: darq
+      sha256: eb58203f550d113df1984cf6550b94b6951e515bed98eb49d098fb35719c78b0
+      url: "https://pub.dev"
+    source: hosted
+    version: "2.0.0"
   dart_style:
     dependency: transitive
     description:
@@ -739,10 +755,11 @@ packages:
   rest_api_package:
     dependency: "direct main"
     description:
-      name: rest_api_package
-      sha256: c9c2d04d296b9259b06b40d8d6b720350257fb22de4a2b59c1fdb5899ba19faf
-      url: "https://pub.dev"
-    source: hosted
+      path: "."
+      ref: HEAD
+      resolved-ref: "78602126b43fdb30181dfaeb4a76cd6d6afa92c3"
+      url: "https://github.com/mrasityilmaz/rest-api-package-fork.git"
+    source: git
     version: "1.0.0+2"
   rxdart:
     dependency: transitive

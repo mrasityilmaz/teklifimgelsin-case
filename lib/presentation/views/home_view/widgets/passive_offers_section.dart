@@ -14,8 +14,8 @@ final class _PassiveOffersSection extends ViewModelWidget<HomeViewModel> {
           return OfferCardWidget(
             offerModel: offer,
             isDisabled: true,
-            expiry: 12,
-            amount: 1000,
+            expiry: viewModel.activeSearchParams.expiry,
+            amount: viewModel.activeSearchParams.amount,
           );
         },
       );

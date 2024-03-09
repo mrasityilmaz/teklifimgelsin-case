@@ -20,6 +20,7 @@ final class DateNowWidget extends StatelessWidget {
         color: context.appColors.primaryBlackTextColor,
       ),
       onPressed: null,
+      showDisabledBacgroundColor: false,
       backgroundColor: context.colors.background,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8), side: BorderSide(color: context.appColors.primaryGreyBorderColor)),
     );

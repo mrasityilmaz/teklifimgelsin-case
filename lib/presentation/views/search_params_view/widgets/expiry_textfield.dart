@@ -19,6 +19,7 @@ final class _ExpiryTextFieldWidget extends ViewModelWidget<SearchParamsViewModel
         fontWeight: FontWeight.w400,
       ),
       onTap: viewModel.tryToCloseExpansionTile,
+      onChanged: (s) async => viewModel.fetchOffersWithNewParams(),
       inputFormatter: [CustomMonthFormatter()],
       suffixIcon: Container(
         padding: context.paddingLowVertical * .5 + context.paddingLowHorizontal,

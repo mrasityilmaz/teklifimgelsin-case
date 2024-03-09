@@ -21,14 +21,14 @@ final class _AmountSliderWidget extends ViewModelWidget<SearchParamsViewModel> {
         ),
       ),
       child: Padding(
-        padding: context.paddingLowHorizontal * .5,
+        padding: context.paddingLowHorizontal * 1.2,
         child: Slider(
-          value: viewModel.localSearchParams?.amount ?? 1000,
-          divisions: (300000 - 1000) ~/ 1000,
-          min: 1000,
-          max: 300000,
-          onChanged: viewModel.onChangedAmountSlider,
-          onChangeEnd: (a) async => viewModel.fakeResponse(),
+          value: viewModel.localSearchParams?.amount ?? viewModel.selectedLoanType.lowerAmountLimit,
+          divisions: (viewModel.selectedLoanType.upperAmountLimit - viewModel.selectedLoanType.lowerAmountLimit).abs() ~/ (viewModel.selectedLoanType.stepAmount),
+          min: viewModel.selectedLoanType.lowerAmountLimit,
+          max: viewModel.selectedLoanType.upperAmountLimit,
+          onChanged: viewModel.setAmountValue,
+          onChangeEnd: (a) async => viewModel.fetchOffersWithNewParams(),
         ),
       ),
     );

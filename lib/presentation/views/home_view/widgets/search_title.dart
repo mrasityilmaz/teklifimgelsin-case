@@ -8,7 +8,7 @@ final class _HomeSearchTitleWidget extends ViewModelWidget<HomeViewModel> {
     final int mount = viewModel.activeSearchParams.expiry;
     final double amountByK = viewModel.activeSearchParams.amount / 1000;
     final int count = viewModel.offersResponse?.activeOffers?.length ?? 0;
-    final String loanType = viewModel.activeSearchParams.loanType.name;
+    final String loanType = viewModel.activeSearchParams.loanType.text;
     return Padding(
       padding: context.screenPaddingHorizontal + context.paddingNormalVertical,
       child: Text(
