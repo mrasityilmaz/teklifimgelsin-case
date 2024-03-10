@@ -1,4 +1,6 @@
+import 'package:my_coding_setup/data/models/offer_model/offer_model.dart';
 import 'package:my_coding_setup/data/models/offer_response_model/offers_response_model.dart';
+import 'package:my_coding_setup/data/models/sponsored_offer_model/sponsored_offer_model.dart';
 
 extension OffersResponseModelExtension on OffersResponseModel? {
   bool get hasActiveOffers => this?.activeOffers != null && this?.activeOffers?.isNotEmpty == true;
@@ -10,7 +12,9 @@ extension OffersResponseModelExtension on OffersResponseModel? {
   bool get hasAnyOffers => hasActiveOffers || hasPassiveOffers || hasSponsoredOffers;
 
   OffersResponseModel? get checkIfNull {
-    if ((this?.activeOffers == null || this?.activeOffers?.isEmpty == true) &&
+    if (this == null) {
+      return null;
+    } else if ((this?.activeOffers == null || this?.activeOffers?.isEmpty == true) &&
         (this?.amount == null) &&
         (this?.carCondition == null) &&
         (this?.clientId == null) &&
@@ -23,5 +27,33 @@ extension OffersResponseModelExtension on OffersResponseModel? {
     } else {
       return this!;
     }
+  }
+}
+
+extension SponsoredOfferModelExtension on SponsoredOfferModel? {
+  ///
+  /// Kredi detayları bu değerlere bağlı olduğu için, bu değerlerin null olduğu bir model null'dan farksızdır.
+  ///
+  SponsoredOfferModel? get checkIfNull {
+    if (this == null) {
+      return null;
+    } else if (this?.adContent == null || this?.adContent?.isEmpty == true) {
+      return null;
+    }
+    return this;
+  }
+}
+
+extension OfferModelExtension on OfferModel? {
+  ///
+  /// Kredi detayları bu değerlere bağlı olduğu için, bu değerlerin null olduğu bir model null'dan farksızdır.
+  ///
+  OfferModel? get checkIfNull {
+    if (this == null) {
+      return null;
+    } else if (this?.interestRate == null && this?.annualRate == null) {
+      return null;
+    }
+    return this;
   }
 }

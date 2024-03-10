@@ -6,11 +6,11 @@ final class _ActiveOffersSection extends ViewModelWidget<HomeViewModel> {
 
   @override
   Widget build(BuildContext context, HomeViewModel viewModel) {
-    if (viewModel.offersResponse != null && viewModel.offersResponse?.activeOffers?.isNotEmpty == true) {
+    if (viewModel.activeOffers.isNotEmpty) {
       return SliverList.builder(
-        itemCount: viewModel.offersResponse?.activeOffers?.length ?? 0,
+        itemCount: viewModel.activeOffers.length,
         itemBuilder: (context, index) {
-          final offer = viewModel.offersResponse?.activeOffers?[index];
+          final offer = viewModel.activeOffers[index];
           return OfferCardWidget(
             offerModel: offer,
             expiry: viewModel.activeSearchParams.expiry,

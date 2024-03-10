@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:my_coding_setup/core/extensions/offer_response_extension.dart';
 import 'package:my_coding_setup/core/services/logger/logger_service.dart';
+import 'package:my_coding_setup/data/models/offer_model/offer_model.dart';
 import 'package:my_coding_setup/data/models/offer_response_model/offers_response_model.dart';
 import 'package:my_coding_setup/data/models/search_params_model/search_params_model.dart';
+import 'package:my_coding_setup/data/models/sponsored_offer_model/sponsored_offer_model.dart';
 import 'package:my_coding_setup/data/services/search_params_service.dart';
 import 'package:my_coding_setup/domain/repositories/offer_repository/i_offer_repository.dart';
 import 'package:my_coding_setup/injection/injection_container.dart';
@@ -14,6 +17,7 @@ final class HomeViewModel extends ReactiveViewModel {
   final IOfferRepository _offerRepository = locator<IOfferRepository>();
   final SearchParamsService _searchParamsService = locator<SearchParamsService>();
   late final SearchParamsService _listenableSearchParamsService = listenableServices.first as SearchParamsService;
+  final ScrollController scrollController = ScrollController();
 
   ///
   /// Reactive Value's
@@ -26,6 +30,20 @@ final class HomeViewModel extends ReactiveViewModel {
   OffersResponseModel? _offersResponse;
 
   OffersResponseModel? get offersResponse => _offersResponse;
+
+  ///
+  /// Getters
+  ///
+
+  List<SponsoredOfferModel> get sponsoredOffers => offersResponse?.sponsoredOffers?.where((element) => element.checkIfNull != null).toList() ?? [];
+
+  List<OfferModel> get activeOffers => offersResponse?.activeOffers?.where((element) => element.checkIfNull != null).toList() ?? [];
+
+  List<OfferModel> get passiveOffers => offersResponse?.passiveOffers?.where((element) => element.checkIfNull != null).toList() ?? [];
+
+  ///
+  /// Methods
+  ///
 
   Future<void> getOffers() async {
     try {
@@ -50,4 +68,10 @@ final class HomeViewModel extends ReactiveViewModel {
 
   @override
   List<ListenableServiceMixin> get listenableServices => [_searchParamsService];
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
 }

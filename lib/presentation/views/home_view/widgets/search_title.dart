@@ -6,16 +6,65 @@ final class _HomeSearchTitleWidget extends ViewModelWidget<HomeViewModel> {
   @override
   Widget build(BuildContext context, HomeViewModel viewModel) {
     final int mount = viewModel.activeSearchParams.expiry;
-    final double amountByK = viewModel.activeSearchParams.amount / 1000;
+    final String amountByK = viewModel.activeSearchParams.amount.formatToTRCurrencyWithoutAfterDecimal.withTLSymbol;
     final int count = viewModel.offersResponse?.activeOffers?.length ?? 0;
     final String loanType = viewModel.activeSearchParams.loanType.text;
     return Padding(
       padding: context.screenPaddingHorizontal + context.paddingNormalVertical,
-      child: Text(
-        '''$mount Ay Vadeli ${amountByK.toStringAsFixed(3)} TL $loanType Kredisi için aylık taksite göre sıralanmış $count teklifin var.''',
-        textAlign: TextAlign.center,
-        maxLines: 3,
-        style: context.textTheme.titleLarge?.copyWith(fontWeight: FontWeight.w700, fontSize: 18, color: context.appColors.primaryBlueColor),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Row(
+            children: [
+              Text(
+                'Kredi Tipi:\t',
+                style: context.textTheme.titleMedium,
+              ),
+              Text(
+                loanType,
+                style: context.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Text(
+                'Kredi Tutarı:\t',
+                style: context.textTheme.titleMedium,
+              ),
+              Text(
+                amountByK,
+                style: context.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          Row(
+            children: [
+              Text(
+                'Vade:\t',
+                style: context.textTheme.titleMedium,
+              ),
+              Text(
+                '$mount Ay',
+                style: context.textTheme.titleMedium?.copyWith(
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ],
+          ),
+          SizedBox(
+            height: context.lowValue,
+          ),
+          Text(
+            'Toplam $count adet kredi bulundu.',
+            style: context.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.w300),
+          ),
+        ],
       ),
     );
   }

@@ -101,13 +101,10 @@ final class CustomTextFieldWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return TextField(
       onTapOutside: (event) {
-        if (onTapOutside != null) {
-          onTapOutside!();
-        } else {
-          FocusManager.instance.primaryFocus?.unfocus();
+        onTapOutside?.call();
+        FocusManager.instance.primaryFocus?.unfocus();
 
-          SystemChannels.textInput.invokeMethod('TextInput.hide');
-        }
+        SystemChannels.textInput.invokeMethod('TextInput.hide');
       },
       autofillHints: autofillHints,
       autocorrect: autoCorrect == true,

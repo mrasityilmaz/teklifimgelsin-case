@@ -3,7 +3,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:my_coding_setup/assets.dart';
 import 'package:my_coding_setup/core/extensions/context_extension.dart';
+import 'package:my_coding_setup/core/extensions/num_extension.dart';
 import 'package:my_coding_setup/core/extensions/sliver_extension.dart';
+import 'package:my_coding_setup/core/extensions/string_extension.dart';
 import 'package:my_coding_setup/data/models/offer_response_model/offers_response_model.dart';
 import 'package:my_coding_setup/presentation/core_widgets/ad_banner_widget/ad_banner_widget.dart';
 import 'package:my_coding_setup/presentation/core_widgets/advanced_button/advanced_button_widget.dart';
@@ -37,13 +39,14 @@ final class HomeView extends StatelessWidget {
             bottom: false,
             child: CustomScrollView(
               shrinkWrap: true,
+              controller: viewModel.scrollController,
               slivers: [
                 const _HomeAppBarWidget(),
                 const AdBannerWidget(
                   imageUrl: 'https://cdn.teklifimgelsin.com/images/banners/QNB_30k_720x250.webp',
                 ).wrapInSliverToBoxAdapter,
                 const _HomeSearchTitleWidget().wrapInSliverToBoxAdapter,
-                const _HomeTitleButtonSection().wrapInSliverToBoxAdapter,
+                const _HomeTitleButtonSection(),
                 SizedBox(
                   height: context.normalValue,
                 ).wrapInSliverToBoxAdapter,

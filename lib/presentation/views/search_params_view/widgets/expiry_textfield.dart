@@ -19,8 +19,18 @@ final class _ExpiryTextFieldWidget extends ViewModelWidget<SearchParamsViewModel
         fontWeight: FontWeight.w400,
       ),
       onTap: viewModel.tryToCloseExpansionTile,
-      onChanged: (s) async => viewModel.fetchOffersWithNewParams(),
-      inputFormatter: [CustomMonthFormatter()],
+      onChanged: (s) async {
+        // Yalnızca rakamları korumak için regex kullanma
+        final RegExp regex = RegExp('[0-9]');
+
+        // Yeni girilen metinde yalnızca rakamları koruma
+        final String newText = regex.allMatches(s).map((match) => match.group(0)).join();
+        if (newText.isNotEmpty && newText != '0') {
+          await viewModel.fetchOffersWithNewParams();
+        }
+      },
+      onTapOutside: () => viewModel.checkValidAllTextFields(),
+      inputFormatter: [CustomMonthFormatter(maxMonth: viewModel.localSearchParams!.loanType.upperExpiryLimit)],
       suffixIcon: Container(
         padding: context.paddingLowVertical * .5 + context.paddingLowHorizontal,
         margin: EdgeInsets.only(right: (context.paddingLowHorizontal * .8).right),

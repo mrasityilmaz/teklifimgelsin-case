@@ -18,7 +18,7 @@ final class _BankLogoAndDetailSection extends StatelessWidget {
             children: [
               SvgPicture.asset(
                 'assets/bank_logos/b$bankId.svg',
-                placeholderBuilder: SvgPicture.defaultPlaceholderBuilder,
+                placeholderBuilder: (BuildContext context) => const SizedBox(),
                 height: constraints.maxHeight * .9,
               ),
               const Spacer(),

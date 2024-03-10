@@ -208,6 +208,15 @@ mixin _SearchParamsViewMixin on ReactiveViewModel {
     } catch (e) {}
   }
 
+  void checkValidAllTextFields() {
+    if (localSearchParams == null) {
+      return;
+    }
+
+    setAmountValue(localSearchParams!.amount);
+    setExpiryValue(localSearchParams!.expiry.toDouble());
+  }
+
   ///
   /// Dispose the mixin variables
   ///

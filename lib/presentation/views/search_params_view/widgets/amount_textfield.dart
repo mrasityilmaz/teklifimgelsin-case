@@ -19,7 +19,8 @@ final class _AmountTextFieldWidget extends ViewModelWidget<SearchParamsViewModel
       ),
       onChanged: (s) async => viewModel.fetchOffersWithNewParams(),
       onTap: viewModel.tryToCloseExpansionTile,
-      inputFormatter: [CustomAmountFormatter()],
+      onTapOutside: () => viewModel.checkValidAllTextFields(),
+      inputFormatter: [CustomAmountFormatter(maxValue: viewModel.localSearchParams!.loanType.upperAmountLimit)],
       suffixIcon: Container(
         padding: context.paddingLowVertical * .5 + context.paddingLowHorizontal,
         margin: EdgeInsets.only(right: (context.paddingLowHorizontal * .8).right),

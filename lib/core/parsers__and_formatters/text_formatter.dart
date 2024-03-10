@@ -9,6 +9,10 @@ import 'package:my_coding_setup/core/extensions/string_extension.dart';
 ///
 @immutable
 final class CustomAmountFormatter extends TextInputFormatter {
+  const CustomAmountFormatter({required this.maxValue});
+
+  final double maxValue;
+
   @override
   TextEditingValue formatEditUpdate(
     TextEditingValue oldValue,
@@ -29,8 +33,8 @@ final class CustomAmountFormatter extends TextInputFormatter {
     try {
       amount = int.tryParse(newText) ?? 0;
 
-      if (amount > 300000) {
-        amount = 300000;
+      if (amount > maxValue) {
+        amount = maxValue.toInt();
       }
     } catch (e) {
       debugPrint('Error: $e');
@@ -46,6 +50,9 @@ final class CustomAmountFormatter extends TextInputFormatter {
 
 @immutable
 final class CustomMonthFormatter extends TextInputFormatter {
+  const CustomMonthFormatter({required this.maxMonth});
+
+  final int maxMonth;
   @override
   TextEditingValue formatEditUpdate(
     TextEditingValue oldValue,
@@ -63,8 +70,8 @@ final class CustomMonthFormatter extends TextInputFormatter {
       try {
         amount = int.tryParse(newText);
 
-        if ((amount ?? 37) > 36) {
-          amount = 36;
+        if ((amount ?? (maxMonth + 1)) > maxMonth) {
+          amount = maxMonth;
         }
       } catch (e) {
         debugPrint('Error: $e');

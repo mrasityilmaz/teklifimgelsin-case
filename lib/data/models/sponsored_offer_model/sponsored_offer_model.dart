@@ -25,7 +25,7 @@ class SponsoredOfferModel with _$SponsoredOfferModel {
     @JsonKey(name: 'list_type') int? listType,
     @JsonKey(name: 'logo_url') String? logoUrl,
     @JsonKey(name: 'product_type') int? productType,
-    @JsonKey(name: 'sponsored_rate') int? sponsoredRate,
+    @JsonKey(name: 'sponsored_rate') double? sponsoredRate,
   }) = _SponsoredOfferModel;
 
   factory SponsoredOfferModel.fromJson(Map<String, dynamic> json) => _$SponsoredOfferModelFromJson(json);

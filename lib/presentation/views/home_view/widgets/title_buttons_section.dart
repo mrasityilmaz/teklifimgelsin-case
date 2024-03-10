@@ -6,9 +6,12 @@ final class _HomeTitleButtonSection extends ViewModelWidget<HomeViewModel> {
 
   @override
   Widget build(BuildContext context, HomeViewModel viewModel) {
-    return Padding(
-      padding: context.screenPaddingHorizontal,
-      child: Row(
+    return SliverAppBar(
+      pinned: true,
+      automaticallyImplyLeading: false,
+      backgroundColor: context.colors.background,
+      leadingWidth: 0,
+      title: Row(
         children: [
           const Expanded(
             child: DateNowWidget(),
@@ -25,18 +28,13 @@ final class _HomeTitleButtonSection extends ViewModelWidget<HomeViewModel> {
                 color: context.appColors.primaryBlueColor,
                 fontWeight: FontWeight.w800,
               ),
-              onPressed: () async {
-                final offers = await AppDialogs.instance.showModalBottomSheetDialog<OffersResponseModel?>(
-                  context,
-                  showDragHandle: true,
-                  shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
-                  child: const SearchParamsView<OffersResponseModel?>(),
-                );
-
-                if (offers != null) {
+              onPressed: () => showSearchModalBottomSheet(
+                context,
+                onOfferResponsed: (offers) {
                   viewModel.setOfferList(offers);
-                }
-              },
+                  viewModel.scrollController.animateTo(0, duration: const Duration(milliseconds: 400), curve: Curves.fastLinearToSlowEaseIn);
+                },
+              ),
               backgroundColor: context.appColors.primaryGreyBackgroundColor,
               shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(8), side: BorderSide(color: context.appColors.primaryGreyBorderColor)),
             ),
@@ -44,5 +42,17 @@ final class _HomeTitleButtonSection extends ViewModelWidget<HomeViewModel> {
         ],
       ),
     );
+  }
+
+  Future<void> showSearchModalBottomSheet(BuildContext context, {required ValueChanged<OffersResponseModel> onOfferResponsed}) async {
+    final offers = await AppDialogs.instance.showModalBottomSheetDialog<OffersResponseModel?>(
+      context,
+      showDragHandle: true,
+      shape: const RoundedRectangleBorder(borderRadius: BorderRadius.vertical(top: Radius.circular(20))),
+      child: const SearchParamsView<OffersResponseModel?>(),
+    );
+    if (offers != null) {
+      onOfferResponsed(offers);
+    }
   }
 }

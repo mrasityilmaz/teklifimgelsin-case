@@ -74,6 +74,11 @@ final class SearchParamsViewModel extends ReactiveViewModel with _SearchParamsVi
         return;
       }
 
+      ///
+      /// Check if all text fields are valid
+      ///
+      checkValidAllTextFields();
+
       await runBusyFuture(
         _updateGlobalSearchParams(localSearchParams!),
       ).then((value) {

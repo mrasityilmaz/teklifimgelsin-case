@@ -53,7 +53,7 @@ mixin _$SponsoredOfferModel {
   @JsonKey(name: 'product_type')
   int? get productType => throw _privateConstructorUsedError;
   @JsonKey(name: 'sponsored_rate')
-  int? get sponsoredRate => throw _privateConstructorUsedError;
+  double? get sponsoredRate => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -85,7 +85,7 @@ abstract class $SponsoredOfferModelCopyWith<$Res> {
       @JsonKey(name: 'list_type') int? listType,
       @JsonKey(name: 'logo_url') String? logoUrl,
       @JsonKey(name: 'product_type') int? productType,
-      @JsonKey(name: 'sponsored_rate') int? sponsoredRate});
+      @JsonKey(name: 'sponsored_rate') double? sponsoredRate});
 }
 
 /// @nodoc
@@ -187,7 +187,7 @@ class _$SponsoredOfferModelCopyWithImpl<$Res, $Val extends SponsoredOfferModel>
       sponsoredRate: freezed == sponsoredRate
           ? _value.sponsoredRate
           : sponsoredRate // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
     ) as $Val);
   }
 }
@@ -218,7 +218,7 @@ abstract class _$$_SponsoredOfferModelCopyWith<$Res>
       @JsonKey(name: 'list_type') int? listType,
       @JsonKey(name: 'logo_url') String? logoUrl,
       @JsonKey(name: 'product_type') int? productType,
-      @JsonKey(name: 'sponsored_rate') int? sponsoredRate});
+      @JsonKey(name: 'sponsored_rate') double? sponsoredRate});
 }
 
 /// @nodoc
@@ -318,7 +318,7 @@ class __$$_SponsoredOfferModelCopyWithImpl<$Res>
       sponsoredRate: freezed == sponsoredRate
           ? _value.sponsoredRate
           : sponsoredRate // ignore: cast_nullable_to_non_nullable
-              as int?,
+              as double?,
     ));
   }
 }
@@ -399,7 +399,7 @@ class _$_SponsoredOfferModel implements _SponsoredOfferModel {
   final int? productType;
   @override
   @JsonKey(name: 'sponsored_rate')
-  final int? sponsoredRate;
+  final double? sponsoredRate;
 
   @override
   String toString() {
@@ -498,7 +498,7 @@ abstract class _SponsoredOfferModel implements SponsoredOfferModel {
           @JsonKey(name: 'list_type') final int? listType,
           @JsonKey(name: 'logo_url') final String? logoUrl,
           @JsonKey(name: 'product_type') final int? productType,
-          @JsonKey(name: 'sponsored_rate') final int? sponsoredRate}) =
+          @JsonKey(name: 'sponsored_rate') final double? sponsoredRate}) =
       _$_SponsoredOfferModel;
 
   factory _SponsoredOfferModel.fromJson(Map<String, dynamic> json) =
@@ -554,7 +554,7 @@ abstract class _SponsoredOfferModel implements SponsoredOfferModel {
   int? get productType;
   @override
   @JsonKey(name: 'sponsored_rate')
-  int? get sponsoredRate;
+  double? get sponsoredRate;
   @override
   @JsonKey(ignore: true)
   _$$_SponsoredOfferModelCopyWith<_$_SponsoredOfferModel> get copyWith =>
