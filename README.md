@@ -5,6 +5,8 @@
 > environment:
 > sdk: >=3.1.0 <4.0.0
 
+> App yalnızca IOS Simulator'da test edildi. 
+
 
 ## Yapılanlar
 - İstenilen Kredi tuturı ve Vade aralığındaki teklifleri getirme
