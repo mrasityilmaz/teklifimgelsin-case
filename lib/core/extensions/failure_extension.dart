@@ -1,4 +1,4 @@
-import 'package:my_coding_setup/core/errors/errors.dart';
+import 'package:teklifimgelsin_case/core/errors/errors.dart';
 
 extension FailureExtension on Failure {
   String get getErrorMessage {

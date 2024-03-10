@@ -2,7 +2,7 @@ import 'dart:convert';
 
 import 'package:flutter/foundation.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:my_coding_setup/data/models/search_params_model/search_params_model.dart';
+import 'package:teklifimgelsin_case/data/models/search_params_model/search_params_model.dart';
 
 @immutable
 final class SearchParamsHiveAdapter extends TypeAdapter<SearchParamsModel> {

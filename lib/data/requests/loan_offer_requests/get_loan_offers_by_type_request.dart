@@ -1,5 +1,5 @@
-import 'package:my_coding_setup/core/constants/api_constants.dart';
-import 'package:my_coding_setup/data/enums/credit_type_enum.dart';
+import 'package:teklifimgelsin_case/core/constants/api_constants.dart';
+import 'package:teklifimgelsin_case/data/enums/credit_type_enum.dart';
 import 'package:rest_api_package/rest_api_package.dart';
 
 final class GetLoanOffersRequest extends IRestApiRequest {

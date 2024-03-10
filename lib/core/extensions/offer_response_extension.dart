@@ -1,6 +1,6 @@
-import 'package:my_coding_setup/data/models/offer_model/offer_model.dart';
-import 'package:my_coding_setup/data/models/offer_response_model/offers_response_model.dart';
-import 'package:my_coding_setup/data/models/sponsored_offer_model/sponsored_offer_model.dart';
+import 'package:teklifimgelsin_case/data/models/offer_model/offer_model.dart';
+import 'package:teklifimgelsin_case/data/models/offer_response_model/offers_response_model.dart';
+import 'package:teklifimgelsin_case/data/models/sponsored_offer_model/sponsored_offer_model.dart';
 
 extension OffersResponseModelExtension on OffersResponseModel? {
   bool get hasActiveOffers => this?.activeOffers != null && this?.activeOffers?.isNotEmpty == true;

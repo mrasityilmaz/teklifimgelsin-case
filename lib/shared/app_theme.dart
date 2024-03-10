@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_coding_setup/injection/injection_container.dart';
-import 'package:my_coding_setup/shared/theme/color_scheme.dart';
+import 'package:teklifimgelsin_case/injection/injection_container.dart';
+import 'package:teklifimgelsin_case/shared/theme/color_scheme.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
 part 'theme/app_theme.dart';

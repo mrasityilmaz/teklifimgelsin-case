@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:my_coding_setup/core/extensions/context_extension.dart';
-import 'package:my_coding_setup/core/extensions/num_extension.dart';
-import 'package:my_coding_setup/core/extensions/string_extension.dart';
-import 'package:my_coding_setup/data/models/offer_loan_detail_model/offer_loan_detail_model.dart';
-import 'package:my_coding_setup/data/models/offer_loan_detail_model/sponsored_offer_loan_detail_model.dart';
-import 'package:my_coding_setup/data/models/offer_model/offer_model.dart';
-import 'package:my_coding_setup/data/models/sponsored_offer_model/sponsored_offer_model.dart';
-import 'package:my_coding_setup/presentation/core_widgets/advanced_button/advanced_button_widget.dart';
+import 'package:teklifimgelsin_case/core/extensions/context_extension.dart';
+import 'package:teklifimgelsin_case/core/extensions/num_extension.dart';
+import 'package:teklifimgelsin_case/core/extensions/string_extension.dart';
+import 'package:teklifimgelsin_case/data/models/offer_loan_detail_model/offer_loan_detail_model.dart';
+import 'package:teklifimgelsin_case/data/models/offer_loan_detail_model/sponsored_offer_loan_detail_model.dart';
+import 'package:teklifimgelsin_case/data/models/offer_model/offer_model.dart';
+import 'package:teklifimgelsin_case/data/models/sponsored_offer_model/sponsored_offer_model.dart';
+import 'package:teklifimgelsin_case/presentation/core_widgets/advanced_button/advanced_button_widget.dart';
 
 part 'component_bodies/collapse_body.dart';
 part 'component_bodies/constant_body.dart';

@@ -5,7 +5,7 @@
 	"version": "0.2.0",
 	"configurations": [
 		{
-			"name": "my_coding_setup",
+			"name": "teklifimgelsin_case",
 			"request": "launch",
 			"type": "dart",
 			"toolArgs": [
@@ -14,7 +14,7 @@
 			                  ]
 		},
 		{
-			"name": "my_coding_setup (profile mode)",
+			"name": "teklifimgelsin_case (profile mode)",
 			"request": "launch",
 			"type": "dart",
 			"flutterMode": "profile",
@@ -24,7 +24,7 @@
 			                  ]
 		},
 		{
-			"name": "my_coding_setup (release mode)",
+			"name": "teklifimgelsin_case (release mode)",
 			"request": "launch",
 			"type": "dart",
 			"flutterMode": "release",

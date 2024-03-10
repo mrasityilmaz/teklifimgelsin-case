@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
-import 'package:my_coding_setup/core/extensions/context_extension.dart';
-import 'package:my_coding_setup/presentation/core_widgets/advanced_button/advanced_button_widget.dart';
+import 'package:teklifimgelsin_case/core/extensions/context_extension.dart';
+import 'package:teklifimgelsin_case/presentation/core_widgets/advanced_button/advanced_button_widget.dart';
 
 @immutable
 final class DateNowWidget extends StatelessWidget {

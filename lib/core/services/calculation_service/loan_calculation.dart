@@ -3,8 +3,8 @@
 import 'dart:math' as math;
 
 import 'package:flutter/foundation.dart';
-import 'package:my_coding_setup/data/models/offer_loan_detail_model/offer_loan_detail_model.dart';
-import 'package:my_coding_setup/data/models/offer_loan_detail_model/sponsored_offer_loan_detail_model.dart';
+import 'package:teklifimgelsin_case/data/models/offer_loan_detail_model/offer_loan_detail_model.dart';
+import 'package:teklifimgelsin_case/data/models/offer_loan_detail_model/sponsored_offer_loan_detail_model.dart';
 
 @immutable
 final class LoanCalculation {
@@ -111,32 +111,4 @@ final class LoanCalculation {
     final double processCost = (totalOffer / 1000) * _costRatePerByGrand;
     return processCost;
   }
-
-  // static double calculateTotalPayment({required double monthlyPayment, required int expiry}) {
-  //  List<double> faizler = List<double>.empty(growable:true);
-  // List<double> anaparalar = List<double>.empty(growable:true);
-  // double miktar = 100000;
-  // double oran = 3.81;
-  // double aylikOdeme = 11252.65;
-  // for (int i = 1; i < 13; i++) {
-
-  //   double faiz = miktar * oran / 100;
-
-  //   print("$faiz-$i");
-  //   faizler.add(faiz);
-
-  //   double kkdf = faiz * 0.15;
-
-  //   double bsmv = faiz * 0.15;
-
-  //   double anapara = (aylikOdeme- faiz - kkdf - bsmv);
-  //   anaparalar.add(anapara);
-  //   print("Anapara : ${anapara}");
-
-  //   miktar -=  anapara;
-
-  //   print("Yeni miktar = $miktar");
-
-  // }
-  // }
 }

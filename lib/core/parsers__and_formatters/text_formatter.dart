@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:my_coding_setup/core/extensions/string_extension.dart';
+import 'package:teklifimgelsin_case/core/extensions/string_extension.dart';
 
 ///
 ///

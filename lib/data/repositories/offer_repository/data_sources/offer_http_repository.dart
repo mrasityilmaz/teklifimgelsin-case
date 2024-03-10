@@ -1,14 +1,14 @@
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 import 'package:injectable/injectable.dart';
-import 'package:my_coding_setup/core/errors/errors.dart';
-import 'package:my_coding_setup/core/extensions/dartz_extension.dart';
-import 'package:my_coding_setup/core/extensions/offer_response_extension.dart';
-import 'package:my_coding_setup/data/models/offer_response_model/offers_response_model.dart';
-import 'package:my_coding_setup/data/models/search_params_model/search_params_model.dart';
-import 'package:my_coding_setup/data/requests/loan_offer_requests/get_loan_offers_by_type_request.dart';
-import 'package:my_coding_setup/domain/repositories/offer_repository/data_sources/iremote_repository.dart';
-import 'package:my_coding_setup/injection/injection_container.dart';
+import 'package:teklifimgelsin_case/core/errors/errors.dart';
+import 'package:teklifimgelsin_case/core/extensions/dartz_extension.dart';
+import 'package:teklifimgelsin_case/core/extensions/offer_response_extension.dart';
+import 'package:teklifimgelsin_case/data/models/offer_response_model/offers_response_model.dart';
+import 'package:teklifimgelsin_case/data/models/search_params_model/search_params_model.dart';
+import 'package:teklifimgelsin_case/data/requests/loan_offer_requests/get_loan_offers_by_type_request.dart';
+import 'package:teklifimgelsin_case/domain/repositories/offer_repository/data_sources/iremote_repository.dart';
+import 'package:teklifimgelsin_case/injection/injection_container.dart';
 import 'package:rest_api_package/rest_api_package.dart';
 
 @Environment('real')

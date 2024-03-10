@@ -2,11 +2,11 @@ import 'dart:async';
 
 import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
-import 'package:my_coding_setup/core/services/logger/logger_service.dart';
-import 'package:my_coding_setup/data/services/hive_service/hive_service.dart';
-import 'package:my_coding_setup/injection/injection_container.dart';
-import 'package:my_coding_setup/presentation/views/home_view/home_view.dart';
-import 'package:my_coding_setup/shared/app_theme.dart';
+import 'package:teklifimgelsin_case/core/services/logger/logger_service.dart';
+import 'package:teklifimgelsin_case/data/services/hive_service/hive_service.dart';
+import 'package:teklifimgelsin_case/injection/injection_container.dart';
+import 'package:teklifimgelsin_case/presentation/views/home_view/home_view.dart';
+import 'package:teklifimgelsin_case/shared/app_theme.dart';
 import 'package:stacked_themes/stacked_themes.dart';
 
 void main() async {

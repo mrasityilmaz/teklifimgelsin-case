@@ -1,7 +1,7 @@
 // ignore_for_file: invalid_annotation_target
 
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:my_coding_setup/data/enums/bank_type_enum.dart';
+import 'package:teklifimgelsin_case/data/enums/bank_type_enum.dart';
 
 part 'offer_model.freezed.dart';
 part 'offer_model.g.dart';

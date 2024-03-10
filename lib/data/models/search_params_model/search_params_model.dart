@@ -1,5 +1,5 @@
 import 'package:freezed_annotation/freezed_annotation.dart';
-import 'package:my_coding_setup/data/enums/credit_type_enum.dart';
+import 'package:teklifimgelsin_case/data/enums/credit_type_enum.dart';
 
 part 'search_params_model.freezed.dart';
 part 'search_params_model.g.dart';

@@ -1,16 +1,16 @@
 import 'package:animated_custom_dropdown/custom_dropdown.dart';
 import 'package:flutter/material.dart';
-import 'package:my_coding_setup/core/errors/errors.dart';
-import 'package:my_coding_setup/core/extensions/context_extension.dart';
-import 'package:my_coding_setup/core/extensions/num_extension.dart';
-import 'package:my_coding_setup/core/extensions/string_extension.dart';
-import 'package:my_coding_setup/core/parsers__and_formatters/text_formatter.dart';
-import 'package:my_coding_setup/data/enums/credit_type_enum.dart';
-import 'package:my_coding_setup/data/models/offer_response_model/offers_response_model.dart';
-import 'package:my_coding_setup/presentation/core_widgets/advanced_button/advanced_button_widget.dart';
-import 'package:my_coding_setup/presentation/core_widgets/text_field_widget/text_field.dart';
-import 'package:my_coding_setup/presentation/views/search_params_view/search_params_viewmodel.dart';
-import 'package:my_coding_setup/vendor/slider_shape_override.dart';
+import 'package:teklifimgelsin_case/core/errors/errors.dart';
+import 'package:teklifimgelsin_case/core/extensions/context_extension.dart';
+import 'package:teklifimgelsin_case/core/extensions/num_extension.dart';
+import 'package:teklifimgelsin_case/core/extensions/string_extension.dart';
+import 'package:teklifimgelsin_case/core/parsers__and_formatters/text_formatter.dart';
+import 'package:teklifimgelsin_case/data/enums/credit_type_enum.dart';
+import 'package:teklifimgelsin_case/data/models/offer_response_model/offers_response_model.dart';
+import 'package:teklifimgelsin_case/presentation/core_widgets/advanced_button/advanced_button_widget.dart';
+import 'package:teklifimgelsin_case/presentation/core_widgets/text_field_widget/text_field.dart';
+import 'package:teklifimgelsin_case/presentation/views/search_params_view/search_params_viewmodel.dart';
+import 'package:teklifimgelsin_case/vendor/slider_shape_override.dart';
 import 'package:stacked/stacked.dart';
 
 part 'widgets/amount_slider.dart';

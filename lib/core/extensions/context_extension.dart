@@ -1,7 +1,7 @@
 import 'dart:math';
 
 import 'package:flutter/material.dart';
-import 'package:my_coding_setup/shared/theme/color_scheme.dart';
+import 'package:teklifimgelsin_case/shared/theme/color_scheme.dart';
 
 extension ContextExtension on BuildContext {
   MediaQueryData get mediaQuery => MediaQuery.of(this);

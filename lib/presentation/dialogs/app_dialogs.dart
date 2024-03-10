@@ -1,7 +1,7 @@
 import 'dart:async';
 
 import 'package:flutter/material.dart';
-import 'package:my_coding_setup/core/extensions/context_extension.dart';
+import 'package:teklifimgelsin_case/core/extensions/context_extension.dart';
 
 final class AppDialogs {
   factory AppDialogs() => instance;

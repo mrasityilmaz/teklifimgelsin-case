@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:my_coding_setup/core/extensions/offer_response_extension.dart';
-import 'package:my_coding_setup/core/services/logger/logger_service.dart';
-import 'package:my_coding_setup/data/models/offer_model/offer_model.dart';
-import 'package:my_coding_setup/data/models/offer_response_model/offers_response_model.dart';
-import 'package:my_coding_setup/data/models/search_params_model/search_params_model.dart';
-import 'package:my_coding_setup/data/models/sponsored_offer_model/sponsored_offer_model.dart';
-import 'package:my_coding_setup/data/services/search_params_service.dart';
-import 'package:my_coding_setup/domain/repositories/offer_repository/i_offer_repository.dart';
-import 'package:my_coding_setup/injection/injection_container.dart';
+import 'package:teklifimgelsin_case/core/extensions/offer_response_extension.dart';
+import 'package:teklifimgelsin_case/core/services/logger/logger_service.dart';
+import 'package:teklifimgelsin_case/data/models/offer_model/offer_model.dart';
+import 'package:teklifimgelsin_case/data/models/offer_response_model/offers_response_model.dart';
+import 'package:teklifimgelsin_case/data/models/search_params_model/search_params_model.dart';
+import 'package:teklifimgelsin_case/data/models/sponsored_offer_model/sponsored_offer_model.dart';
+import 'package:teklifimgelsin_case/data/services/search_params_service.dart';
+import 'package:teklifimgelsin_case/domain/repositories/offer_repository/i_offer_repository.dart';
+import 'package:teklifimgelsin_case/injection/injection_container.dart';
 import 'package:stacked/stacked.dart';
 
 final class HomeViewModel extends ReactiveViewModel {

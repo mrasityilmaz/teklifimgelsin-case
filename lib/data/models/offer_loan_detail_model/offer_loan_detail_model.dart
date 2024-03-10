@@ -1,4 +1,4 @@
-import 'package:my_coding_setup/core/services/calculation_service/loan_calculation.dart';
+import 'package:teklifimgelsin_case/core/services/calculation_service/loan_calculation.dart';
 
 class OfferLoanDetailModel {
   const OfferLoanDetailModel({

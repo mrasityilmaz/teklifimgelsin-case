@@ -1,7 +1,7 @@
 import 'package:injectable/injectable.dart';
-import 'package:my_coding_setup/data/enums/credit_type_enum.dart';
-import 'package:my_coding_setup/data/models/search_params_model/search_params_model.dart';
-import 'package:my_coding_setup/data/services/hive_service/hive_service.dart';
+import 'package:teklifimgelsin_case/data/enums/credit_type_enum.dart';
+import 'package:teklifimgelsin_case/data/models/search_params_model/search_params_model.dart';
+import 'package:teklifimgelsin_case/data/services/hive_service/hive_service.dart';
 import 'package:stacked/stacked.dart';
 import 'package:uuid/uuid.dart';
 

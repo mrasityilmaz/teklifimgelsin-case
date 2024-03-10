@@ -2,12 +2,12 @@
 
 import 'package:flutter/material.dart';
 import 'package:hive_flutter/hive_flutter.dart';
-import 'package:my_coding_setup/core/constants/hive_constants.dart';
-import 'package:my_coding_setup/core/extensions/list_extension.dart';
-import 'package:my_coding_setup/core/services/logger/logger_service.dart';
-import 'package:my_coding_setup/data/hive_adapters/search_params_hive_adapter.dart';
-import 'package:my_coding_setup/data/models/search_params_model/search_params_model.dart';
-import 'package:my_coding_setup/data/services/hive_service/i_hivebox_service.dart';
+import 'package:teklifimgelsin_case/core/constants/hive_constants.dart';
+import 'package:teklifimgelsin_case/core/extensions/list_extension.dart';
+import 'package:teklifimgelsin_case/core/services/logger/logger_service.dart';
+import 'package:teklifimgelsin_case/data/hive_adapters/search_params_hive_adapter.dart';
+import 'package:teklifimgelsin_case/data/models/search_params_model/search_params_model.dart';
+import 'package:teklifimgelsin_case/data/services/hive_service/i_hivebox_service.dart';
 import 'package:path_provider/path_provider.dart';
 
 part 'boxes/search_params_box_service.dart';

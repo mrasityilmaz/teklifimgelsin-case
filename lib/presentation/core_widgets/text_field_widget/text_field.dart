@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:my_coding_setup/core/extensions/context_extension.dart';
-import 'package:my_coding_setup/shared/theme/color_scheme.dart';
+import 'package:teklifimgelsin_case/core/extensions/context_extension.dart';
+import 'package:teklifimgelsin_case/shared/theme/color_scheme.dart';
 
 @immutable
 final class CustomTextFieldWidget extends StatelessWidget {
