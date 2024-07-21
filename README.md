@@ -140,7 +140,7 @@ Future<({OffersResponseModel? successOfferResponse, OfferLimitFailure? limitFail
 
 ## Uygulama görselleri
 
-
+![ss](https://github.com/mrasityilmaz/teklifimgelsin-case/blob/main/preview.png)
 
 
 
